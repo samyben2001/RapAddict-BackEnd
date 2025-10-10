@@ -1,0 +1,6 @@
+@RapAddict.API_HostAddress = http://localhost:5023
+
+GET {{RapAddict.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
