@@ -13,6 +13,9 @@ AS
 			IF LEN(TRIM(@Url)) = 0
 				RAISERROR('L''url est requise.', 16, 1);
 
+			IF EXISTS (SELECT * FROM [Video] WHERE [Url] = @Url)
+				RAISERROR('L''URL est déjà associée à une vidéo', 16, 1);
+
 			INSERT INTO [Video] ([Title], [ReleaseDate], [Url], [DurationMs])
 			OUTPUT [inserted].[Id]
 			VALUES (@Title, @ReleaseDate, @Url, @DurationMs)
