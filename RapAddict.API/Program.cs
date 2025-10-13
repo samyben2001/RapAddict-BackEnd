@@ -61,6 +61,7 @@ namespace RapAddict.API
 
             builder.Services.AddScoped<IUserRepository, UserService>();
             builder.Services.AddScoped<IPersonRepository, PersonService>();
+            builder.Services.AddScoped<IVideoRepository, VideoService>();
             builder.Services.AddScoped<ITokenRepository, TokenService>();
 
             var app = builder.Build();
