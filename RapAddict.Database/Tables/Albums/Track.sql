@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Track]
 (
-	[Id] INT NOT NULL , 
+	[Id] INT NOT NULL IDENTITY, 
     [Title] NVARCHAR(100) NOT NULL, 
     [ReleaseDate] DATETIME2 NULL, 
     [DurationMs] INT NULL, 

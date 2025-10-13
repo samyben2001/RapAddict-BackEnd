@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Video]
 (
-	[Id] INT NOT NULL, 
+	[Id] INT NOT NULL IDENTITY, 
     [Title] NVARCHAR(100) NOT NULL, 
     [ReleaseDate] DATETIME2 NULL, 
     [Url] NVARCHAR(2083) NOT NULL, 

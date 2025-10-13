@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[User]
 (
-	[Id] INT NOT NULL , 
+	[Id] INT NOT NULL IDENTITY, 
     [Username] NVARCHAR(50) NOT NULL, 
     [Email] NVARCHAR(384) NULL, 
     [InscriptionDate] DATETIME2 NOT NULL DEFAULT GETDATE(), 

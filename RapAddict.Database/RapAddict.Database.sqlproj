@@ -66,6 +66,7 @@
     <Folder Include="StoredProcedures\Update" />
     <Folder Include="StoredProcedures\Delete" />
     <Folder Include="Triggers" />
+    <Folder Include="Functions" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RapAddict.Database.publish.xml" />
@@ -95,6 +96,10 @@
     <Build Include="Tables\Person\ArtistAlbums.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Person\ArtistTracks.sql" />
+    <Build Include="StoredProcedures\Create\CreatePerson.sql" />
+    <Build Include="StoredProcedures\Create\CreateVideo.sql" />
+    <Build Include="StoredProcedures\Create\CreateUser.sql" />
+    <Build Include="Functions\HashAndSalt.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

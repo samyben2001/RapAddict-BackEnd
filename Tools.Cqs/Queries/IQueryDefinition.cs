@@ -1,5 +1,4 @@
-﻿
-namespace Tools.Cqs.Queries
+﻿namespace Tools.Cqs.Queries
 {
     public interface IQueryDefinition<TResult>
     {
