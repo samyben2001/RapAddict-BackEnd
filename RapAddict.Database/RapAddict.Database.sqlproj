@@ -104,6 +104,9 @@
     <Build Include="StoredProcedures\Create\CreateStreamingPlatform.sql" />
     <Build Include="StoredProcedures\Create\CreateSocialMedia.sql" />
     <Build Include="StoredProcedures\Create\CreateTrack.sql" />
+    <Build Include="StoredProcedures\Create\CreateArtist.sql" />
+    <Build Include="StoredProcedures\Create\CreateJournalist.sql" />
+    <Build Include="StoredProcedures\Create\CreateContentCreator.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

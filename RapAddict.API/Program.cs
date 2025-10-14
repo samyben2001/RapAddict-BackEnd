@@ -61,11 +61,15 @@ namespace RapAddict.API
 
             builder.Services.AddScoped<IUserRepository, UserService>();
             builder.Services.AddScoped<IPersonRepository, PersonService>();
+            builder.Services.AddScoped<IArtistRepository, ArtistService>();
+            builder.Services.AddScoped<IJournalistRepository, JournalistService>();
+            builder.Services.AddScoped<IContentCreatorRepository, ContentCreatorService>();
             builder.Services.AddScoped<IVideoRepository, VideoService>();
             builder.Services.AddScoped<IStreamingPlatformRepository, StreamingPlatformService>();
             builder.Services.AddScoped<ISocialMediaRepository, SocialMediaService>();
             builder.Services.AddScoped<IAlbumRepository, AlbumService>();
             builder.Services.AddScoped<ITrackRepository, TrackService>();
+
             builder.Services.AddScoped<ITokenRepository, TokenService>();
 
             var app = builder.Build();
