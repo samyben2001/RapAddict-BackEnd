@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos;
-using RapAddict.Domain.Commands;
-using RapAddict.Domain.Repositories;
-using RapAddict.Domain.Services;
+using RapAddict.Domain.Commands.Persons;
+using RapAddict.Domain.Repositories.Persons;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers

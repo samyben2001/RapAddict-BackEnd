@@ -3,8 +3,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using RapAddict.API.Infrastructure.Token;
-using RapAddict.Domain.Repositories;
-using RapAddict.Domain.Services;
+using RapAddict.Domain.Repositories.Albums;
+using RapAddict.Domain.Repositories.Persons;
+using RapAddict.Domain.Repositories.Users;
+using RapAddict.Domain.Repositories.Videos;
+using RapAddict.Domain.Services.Albums;
+using RapAddict.Domain.Services.Persons;
+using RapAddict.Domain.Services.Users;
+using RapAddict.Domain.Services.Videos;
 using System.Data.Common;
 using System.Text;
 
