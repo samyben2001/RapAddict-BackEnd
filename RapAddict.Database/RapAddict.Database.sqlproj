@@ -107,6 +107,10 @@
     <Build Include="StoredProcedures\Create\CreateArtist.sql" />
     <Build Include="StoredProcedures\Create\CreateJournalist.sql" />
     <Build Include="StoredProcedures\Create\CreateContentCreator.sql" />
+    <Build Include="StoredProcedures\Create\CreateClip.sql" />
+    <Build Include="StoredProcedures\Create\CreateAnalyse.sql" />
+    <Build Include="StoredProcedures\Create\CreateInterview.sql" />
+    <Build Include="StoredProcedures\Create\CreateFreestyle.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

@@ -57,14 +57,22 @@ namespace RapAddict.API
 
             // Injections de dépendances
             builder.Services.AddSingleton(sp => jwtOptions);
+
             builder.Services.AddTransient<DbConnection>(sp => new SqlConnection(@"Data Source=SAM_LAPTOP;Initial Catalog=RapAddict;Integrated Security=True;Encrypt=True;Trust Server Certificate=True;"));
 
             builder.Services.AddScoped<IUserRepository, UserService>();
+
             builder.Services.AddScoped<IPersonRepository, PersonService>();
             builder.Services.AddScoped<IArtistRepository, ArtistService>();
             builder.Services.AddScoped<IJournalistRepository, JournalistService>();
             builder.Services.AddScoped<IContentCreatorRepository, ContentCreatorService>();
+
             builder.Services.AddScoped<IVideoRepository, VideoService>();
+            builder.Services.AddScoped<IAnalyseRepository, AnalyseService>();
+            builder.Services.AddScoped<IInterviewRepository, InterviewService>();
+            builder.Services.AddScoped<IFreestyleRepository, FreestyleService>();
+            builder.Services.AddScoped<IClipRepository, ClipService>();
+
             builder.Services.AddScoped<IStreamingPlatformRepository, StreamingPlatformService>();
             builder.Services.AddScoped<ISocialMediaRepository, SocialMediaService>();
             builder.Services.AddScoped<IAlbumRepository, AlbumService>();
