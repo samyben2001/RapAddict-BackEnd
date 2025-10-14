@@ -1,5 +1,4 @@
-﻿
-namespace RapAddict.Domain.Entities
+﻿namespace RapAddict.Domain.Entities.Videos
 {
     public class Freestyle : Video
     {

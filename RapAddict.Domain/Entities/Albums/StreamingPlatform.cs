@@ -1,4 +1,4 @@
-﻿namespace RapAddict.Domain.Entities
+﻿namespace RapAddict.Domain.Entities.Albums
 {
     public class StreamingPlatform
     {

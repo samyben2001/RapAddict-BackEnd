@@ -1,20 +1,18 @@
-﻿namespace RapAddict.Domain.Entities
+﻿namespace RapAddict.Domain.Entities.Albums
 {
-    public class Track
+    public class Album
     {
         public int Id { get; }
         public string Title { get; }
         public DateTime? ReleaseDate { get; }
         public int? DurationMs { get; }
-        public string? Lyrics { get; }
 
-        public Track(int id, string title, DateTime? releaseDate, int? durationMs, string? lyrics)
+        public Album(int id, string title, DateTime? releaseDate, int? durationMs)
         {
             Id = id;
             Title = title;
             ReleaseDate = releaseDate;
             DurationMs = durationMs;
-            Lyrics = lyrics;
         }
     }
 }

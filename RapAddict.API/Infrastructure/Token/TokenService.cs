@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using RapAddict.Domain.Entities;
+using RapAddict.Domain.Entities.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

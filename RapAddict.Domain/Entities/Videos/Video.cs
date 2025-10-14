@@ -1,17 +1,19 @@
-﻿namespace RapAddict.Domain.Entities
+﻿namespace RapAddict.Domain.Entities.Videos
 {
-    public class Album
+    public class Video
     {
         public int Id { get; }
         public string Title { get; }
         public DateTime? ReleaseDate { get; }
+        public string Url { get; }
         public int? DurationMs { get; }
 
-        public Album(int id, string title, DateTime? releaseDate, int? durationMs)
+        public Video(int id, string title, DateTime? releaseDate, string url, int? durationMs)
         {
             Id = id;
             Title = title;
             ReleaseDate = releaseDate;
+            Url = url;
             DurationMs = durationMs;
         }
     }

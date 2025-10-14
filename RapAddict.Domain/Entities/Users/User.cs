@@ -1,4 +1,4 @@
-﻿namespace RapAddict.Domain.Entities
+﻿namespace RapAddict.Domain.Entities.Users
 {
     public class User
     {

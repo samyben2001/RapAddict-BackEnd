@@ -1,4 +1,4 @@
-﻿using RapAddict.Domain.Entities;
+﻿using RapAddict.Domain.Entities.Users;
 
 namespace RapAddict.API.Infrastructure.Token
 {
