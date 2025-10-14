@@ -1,4 +1,4 @@
-﻿using RapAddict.Domain.Commands;
+﻿using RapAddict.Domain.Commands.Videos;
 using RapAddict.Domain.Repositories;
 using System.Data.Common;
 using Tools.Cqs.Results;

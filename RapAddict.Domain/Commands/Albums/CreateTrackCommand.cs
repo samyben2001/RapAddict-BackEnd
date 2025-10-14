@@ -1,20 +1,20 @@
 ﻿using Tools.Cqs.Commands;
 
-namespace RapAddict.Domain.Commands
+namespace RapAddict.Domain.Commands.Albums
 {
-    public class CreateVideoCommand: ICommandResultDefinition<int>
+    public class CreateTrackCommand : ICommandResultDefinition<int>
     {
         public string Title { get; }
         public DateTime? ReleaseDate { get; }
-        public string Url { get; }
         public int? DurationMs { get; }
+        public string? Lyrics { get; }
 
-        public CreateVideoCommand(string title, DateTime? releaseDate, string url, int? durationMs)
+        public CreateTrackCommand(string title, DateTime? releaseDate, int? durationMs, string? lyrics)
         {
             Title = title;
             ReleaseDate = releaseDate;
-            Url = url;
             DurationMs = durationMs;
+            Lyrics = lyrics;
         }
     }
 }

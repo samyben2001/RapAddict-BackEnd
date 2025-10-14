@@ -1,6 +1,6 @@
 ﻿using Tools.Cqs.Commands;
 
-namespace RapAddict.Domain.Commands
+namespace RapAddict.Domain.Commands.Videos
 {
     public class CreateAnalyseCommand : ICommandDefinition
     {

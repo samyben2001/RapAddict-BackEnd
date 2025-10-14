@@ -1,4 +1,4 @@
-﻿using RapAddict.Domain.Commands;
+﻿using RapAddict.Domain.Commands.Persons;
 using Tools.Cqs.Commands;
 
 namespace RapAddict.Domain.Repositories
