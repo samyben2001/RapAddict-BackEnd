@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos;
 using RapAddict.Domain.Commands;
+using RapAddict.Domain.Entities;
 using RapAddict.Domain.Repositories;
 using Tools.Cqs.Results;
 
@@ -22,19 +23,49 @@ namespace RapAddict.API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreateArtistDto dto)
         {
-            ICqsResult<int> resultP = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName));
-            if (resultP.IsFailure)
+            // Create Person in Database
+            ICqsResult<int> resultPerson = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName));
+            if (resultPerson.IsFailure)
             {
-                return BadRequest(resultP);
+                return BadRequest(resultPerson);
             }
 
-            ICqsResult result = _artistService.Execute(new CreateArtistCommand(resultP.Data));
-            if (result.IsFailure)
+            // Create Artist in Database
+            ICqsResult resultArtist = _artistService.Execute(new CreateArtistCommand(resultPerson.Data));
+            if (resultArtist.IsFailure)
             {
-                return BadRequest(result);
+                return BadRequest(resultArtist);
             }
 
-            return Ok(new { id = resultP.Data });
+            // Add Albums to Artist in Database
+            if (dto.AlbumsId is not null && dto.AlbumsId.Length > 0)
+            {
+                foreach (int albumId in dto.AlbumsId)
+                {
+
+                    ICqsResult resultAlbum = _artistService.Execute(new AddAlbumToArtistCommand(resultPerson.Data, albumId));
+
+                    if (resultAlbum.IsFailure)
+                    {
+                        return BadRequest(resultAlbum);
+                    }
+                }
+            }
+
+            return Ok(new { id = resultPerson.Data });
+        }
+
+        [HttpPost("{artistId}/AddAlbum")]
+        public IActionResult AddAlbumToArtist([FromRoute] int artistId,[FromBody] AddAlbumToArtistDto dto)
+        {
+            ICqsResult resultAlbum = _artistService.Execute(new AddAlbumToArtistCommand(artistId, dto.AlbumId));
+
+            if (resultAlbum.IsFailure)
+            {
+                return BadRequest(resultAlbum);
+            }
+
+            return NoContent();
         }
     }
 }

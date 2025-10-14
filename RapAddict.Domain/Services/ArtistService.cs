@@ -27,5 +27,18 @@ namespace RapAddict.Domain.Services
                 return CqsResult.Failure(ex.Message);
             }
         }
+
+        public ICqsResult Execute(AddAlbumToArtistCommand command)
+        {
+            try
+            {
+                _dbConnection.ExecuteNonQuery("AddAlbumToArtist", true, command);
+                return CqsResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CqsResult.Failure(ex.Message);
+            }
+        }
     }
 }
