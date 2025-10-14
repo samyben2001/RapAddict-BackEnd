@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RapAddict.API.Models.Dtos;
+using RapAddict.API.Models.Dtos.Persons;
 using RapAddict.Domain.Commands.Persons;
 using RapAddict.Domain.Repositories.Persons;
 using Tools.Cqs.Results;
 
-namespace RapAddict.API.Controllers
+namespace RapAddict.API.Controllers.Persons
 {
     [Route("api/[controller]")]
     [ApiController]

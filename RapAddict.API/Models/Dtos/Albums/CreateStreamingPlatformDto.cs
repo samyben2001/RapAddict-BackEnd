@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RapAddict.API.Models.Dtos
+namespace RapAddict.API.Models.Dtos.Albums
 {
     public class CreateStreamingPlatformDto
     {

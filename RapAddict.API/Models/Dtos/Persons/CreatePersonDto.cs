@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RapAddict.API.Models.Dtos
+namespace RapAddict.API.Models.Dtos.Persons
 {
     public class CreatePersonDto
     {

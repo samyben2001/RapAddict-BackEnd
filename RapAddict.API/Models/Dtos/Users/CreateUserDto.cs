@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 
-namespace RapAddict.API.Models.Dtos
+namespace RapAddict.API.Models.Dtos.Users
 {
     public class CreateUserDto
     {

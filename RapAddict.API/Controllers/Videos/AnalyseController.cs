@@ -1,26 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RapAddict.API.Models.Dtos;
+using RapAddict.API.Models.Dtos.Videos;
 using RapAddict.Domain.Commands.Videos;
 using RapAddict.Domain.Repositories.Videos;
 using Tools.Cqs.Results;
 
-namespace RapAddict.API.Controllers
+namespace RapAddict.API.Controllers.Videos
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FreestyleController : ControllerBase
+    public class AnalyseController : ControllerBase
     {
         private readonly IVideoRepository _videoService;
-        private readonly IFreestyleRepository _freestyleService;
+        private readonly IAnalyseRepository _analyseService;
 
-        public FreestyleController(IFreestyleRepository freestyleService, IVideoRepository videoService)
+        public AnalyseController(IAnalyseRepository analyseService, IVideoRepository videoService)
         {
-            _freestyleService = freestyleService;
+            _analyseService = analyseService;
             _videoService = videoService;
         }
 
+
         [HttpPost]
-        public IActionResult Create([FromBody] CreateFreestyleDto dto)
+        public IActionResult Create([FromBody] CreateAnalyseDto dto)
         {
             ICqsResult<int> resultP = _videoService.Execute(new CreateVideoCommand(dto.Title, dto.ReleaseDate, dto.Url, dto.DurationMs));
             if (resultP.IsFailure)
@@ -28,7 +29,7 @@ namespace RapAddict.API.Controllers
                 return BadRequest(resultP);
             }
 
-            ICqsResult result = _freestyleService.Execute(new CreateFreestyleCommand(resultP.Data));
+            ICqsResult result = _analyseService.Execute(new CreateAnalyseCommand(resultP.Data, dto.ContentCreatorId));
             if (result.IsFailure)
             {
                 return BadRequest(result);

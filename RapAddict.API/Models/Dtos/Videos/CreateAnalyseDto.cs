@@ -1,5 +1,4 @@
-﻿
-namespace RapAddict.API.Models.Dtos
+﻿namespace RapAddict.API.Models.Dtos.Videos
 {
     public class CreateAnalyseDto : CreateVideoDto
     {

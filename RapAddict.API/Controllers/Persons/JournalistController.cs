@@ -1,26 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RapAddict.API.Models.Dtos;
+using RapAddict.API.Models.Dtos.Persons;
 using RapAddict.Domain.Commands.Persons;
 using RapAddict.Domain.Repositories.Persons;
 using Tools.Cqs.Results;
 
-namespace RapAddict.API.Controllers
+namespace RapAddict.API.Controllers.Persons
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContentCreatorController : ControllerBase
+    public class JournalistController : ControllerBase
     {
         private readonly IPersonRepository _personService;
-        private readonly IContentCreatorRepository _contentCreatorService;
+        private readonly IJournalistRepository _journalistService;
 
-        public ContentCreatorController(IPersonRepository personService, IContentCreatorRepository contentCreatorService)
+        public JournalistController(IPersonRepository personService, IJournalistRepository journalistService)
         {
             _personService = personService;
-            _contentCreatorService = contentCreatorService;
+            _journalistService = journalistService;
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateContentCreatorDto dto)
+        public IActionResult Create([FromBody] CreateJournalistDto dto)
         {
             ICqsResult<int> resultP = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName));
             if (resultP.IsFailure)
@@ -28,7 +28,7 @@ namespace RapAddict.API.Controllers
                 return BadRequest(resultP);
             }
 
-            ICqsResult result = _contentCreatorService.Execute(new CreateContentCreatorCommand(resultP.Data));
+            ICqsResult result = _journalistService.Execute(new CreateJournalistCommand(resultP.Data));
             if (result.IsFailure)
             {
                 return BadRequest(result);
