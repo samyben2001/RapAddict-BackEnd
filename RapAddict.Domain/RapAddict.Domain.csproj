@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mappers\" />
-    <Folder Include="Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Tools.Cqs\Tools.Cqs.csproj" />
     <ProjectReference Include="..\Tools.Database\Tools.Database.csproj" />
   </ItemGroup>

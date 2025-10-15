@@ -1,5 +1,9 @@
 ﻿using RapAddict.Domain.Commands.Albums;
+using RapAddict.Domain.Entities.Albums;
+using RapAddict.Domain.Mappers;
+using RapAddict.Domain.Queries.Albums;
 using RapAddict.Domain.Repositories.Albums;
+using System.Collections.Generic;
 using System.Data.Common;
 using Tools.Cqs.Results;
 using Tools.Database;
@@ -59,6 +63,20 @@ namespace RapAddict.Domain.Services.Albums
             catch (Exception ex)
             {
                 return CqsResult.Failure(ex.Message);
+            }
+        }
+
+        public ICqsResult<IEnumerable<Album>> Execute(GetAlbumsQuery query)
+        {
+            try
+            {
+                IEnumerable<Album> albums = _dbConnection.ExecuteReader("GetAlbums", dr => dr.ToAlbum(), true, query).ToList();
+
+                return CqsResult<IEnumerable<Album>>.Success(albums);
+            }
+            catch (Exception ex)
+            {
+                return CqsResult<IEnumerable<Album>>.Failure(ex.Message);
             }
         }
     }

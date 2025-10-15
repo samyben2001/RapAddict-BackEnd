@@ -2,7 +2,6 @@
 using RapAddict.API.Models.Dtos.Videos;
 using RapAddict.Domain.Commands.Videos;
 using RapAddict.Domain.Repositories.Videos;
-using RapAddict.Domain.Services.Videos;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Videos

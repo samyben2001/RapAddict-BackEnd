@@ -123,6 +123,7 @@
     <Build Include="StoredProcedures\Videos\AddArtistToInterview.sql" />
     <Build Include="StoredProcedures\Videos\AddArtistToFreestyle.sql" />
     <Build Include="StoredProcedures\Videos\AddArtistToClip.sql" />
+    <Build Include="StoredProcedures\Albums\GetAlbums.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

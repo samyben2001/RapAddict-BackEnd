@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos.Albums;
 using RapAddict.Domain.Commands.Albums;
+using RapAddict.Domain.Entities.Albums;
+using RapAddict.Domain.Queries.Albums;
 using RapAddict.Domain.Repositories.Albums;
 using Tools.Cqs.Results;
 
@@ -54,6 +56,19 @@ namespace RapAddict.API.Controllers.Albums
             }
 
             return NoContent();
+        }
+
+        [HttpGet()]
+        public IActionResult GetAlbums([FromQuery] GetAlbumsDto dto)
+        {
+            ICqsResult<IEnumerable<Album>> result = _albumService.Execute(new GetAlbumsQuery(dto.Title, dto.Year, dto.Month, dto.Day, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(new { id = result.Data });
         }
     }
 }
