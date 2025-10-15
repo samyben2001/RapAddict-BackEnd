@@ -56,4 +56,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ArtistId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="eb809270-f08e-4b1f-9847-3c9e34ef4c49" ChangeDateTime="10/15/2025 07:04:51">
+    <Property Name="ElementName" Value="[dbo].[AlbumStreamingPlatforms].[Url]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AlbumStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AlbumStreamingPlatformId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c27795f8-2720-4886-89f8-ae495811a426" ChangeDateTime="10/15/2025 07:06:53">
+    <Property Name="ElementName" Value="[dbo].[TrackStreamingPlatforms].[Url]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TrackStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AlbumStreamingPlatformId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6e6d1d83-b7aa-4943-9537-37aaa065dad9" ChangeDateTime="10/15/2025 07:07:22">
+    <Property Name="ElementName" Value="[dbo].[TrackStreamingPlatforms].[AlbumStreamingPlatformId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TrackStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TrackStreamingPlatformId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="03db914a-03d1-4cf6-a521-8100b571424b" ChangeDateTime="10/15/2025 07:08:31">
+    <Property Name="ElementName" Value="[dbo].[PersonSocialMediaPlatforms].[Url]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PersonSocialMediaPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PersonSocialMediaPlatformId" />
+  </Operation>
 </Operations>
