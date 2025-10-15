@@ -4,7 +4,9 @@ using Tools.Cqs.Commands;
 namespace RapAddict.Domain.Repositories.Albums
 {
     public interface IAlbumRepository :
-        ICommandResultHandler<CreateAlbumCommand, int>
+        ICommandResultHandler<CreateAlbumCommand, int>,
+        ICommandHandler<AddStreamingPlatformToAlbumCommand>,
+        ICommandHandler<AddTrackToAlbumCommand>
     {
     }
 }

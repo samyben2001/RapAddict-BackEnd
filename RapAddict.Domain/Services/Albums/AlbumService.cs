@@ -35,5 +35,31 @@ namespace RapAddict.Domain.Services.Albums
                 return CqsResult<int>.Failure(ex.Message);
             }
         }
+
+        public ICqsResult Execute(AddStreamingPlatformToAlbumCommand command)
+        {
+            try
+            {
+                _dbConnection.ExecuteNonQuery("AddStreamingPlatformToAlbum", true, command);
+                return CqsResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CqsResult.Failure(ex.Message);
+            }
+        }
+
+        public ICqsResult Execute(AddTrackToAlbumCommand command)
+        {
+            try
+            {
+                _dbConnection.ExecuteNonQuery("AddTrackToAlbum", true, command);
+                return CqsResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CqsResult.Failure(ex.Message);
+            }
+        }
     }
 }

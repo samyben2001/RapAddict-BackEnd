@@ -4,7 +4,9 @@ using Tools.Cqs.Commands;
 namespace RapAddict.Domain.Repositories.Persons
 {
     public interface IPersonRepository: 
-        ICommandResultHandler<CreatePersonCommand, int>
+        ICommandResultHandler<CreatePersonCommand, int>,
+        ICommandHandler<AddSocialMediaToPersonCommand>
+
     {
     }
 }

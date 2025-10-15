@@ -2,6 +2,7 @@
 using RapAddict.API.Models.Dtos.Videos;
 using RapAddict.Domain.Commands.Videos;
 using RapAddict.Domain.Repositories.Videos;
+using RapAddict.Domain.Services.Videos;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Videos
@@ -36,6 +37,19 @@ namespace RapAddict.API.Controllers.Videos
             }
 
             return Ok(new { id = resultP.Data });
+        }
+
+        [HttpPost("{analyseId}/Artist")]
+        public IActionResult AddArtist([FromRoute] int analyseId, [FromBody] AddArtistToAnalyseDto dto)
+        {
+            ICqsResult result = _analyseService.Execute(new AddArtistToAnalyseCommand(analyseId, dto.ArtistId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return NoContent();
         }
     }
 }

@@ -16,7 +16,6 @@ namespace RapAddict.Domain.Services.Persons
             _dbConnection.Open();
         }
 
-
         public ICqsResult<int> Execute(CreatePersonCommand command)
         {
             try
@@ -34,6 +33,19 @@ namespace RapAddict.Domain.Services.Persons
             catch (Exception ex)
             {
                 return CqsResult<int>.Failure(ex.Message);
+            }
+        }
+
+        public ICqsResult Execute(AddSocialMediaToPersonCommand command)
+        {
+            try
+            {
+                _dbConnection.ExecuteNonQuery("AddSocialMediaToPerson", true, command);
+                return CqsResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CqsResult.Failure(ex.Message);
             }
         }
     }

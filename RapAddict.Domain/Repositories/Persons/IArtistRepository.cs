@@ -5,7 +5,8 @@ namespace RapAddict.Domain.Repositories.Persons
 {
     public interface IArtistRepository: 
         ICommandHandler<CreateArtistCommand>,
-        ICommandHandler<AddAlbumToArtistCommand>
+        ICommandHandler<AddAlbumToArtistCommand>,
+        ICommandHandler<AddTrackToArtistCommand>
     {
     }
 }

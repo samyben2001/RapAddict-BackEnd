@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RapAddict.API.Models.Dtos.Persons;
 using RapAddict.API.Models.Dtos.Videos;
+using RapAddict.Domain.Commands.Persons;
 using RapAddict.Domain.Commands.Videos;
+using RapAddict.Domain.Entities.Videos;
 using RapAddict.Domain.Repositories.Videos;
+using RapAddict.Domain.Services.Persons;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Videos
@@ -36,6 +40,19 @@ namespace RapAddict.API.Controllers.Videos
             }
 
             return Ok(new { id = resultP.Data });
+        }
+
+        [HttpPost("{interviewId}/Artist")]
+        public IActionResult AddArtist([FromRoute] int interviewId, [FromBody] AddArtistToInterviewDto dto)
+        {
+            ICqsResult result = _interviewService.Execute(new AddArtistToInterviewCommand(interviewId, dto.ArtistId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return NoContent();
         }
     }
 }

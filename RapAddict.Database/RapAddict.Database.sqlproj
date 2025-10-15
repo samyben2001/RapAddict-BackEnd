@@ -114,6 +114,15 @@
     <Build Include="StoredProcedures\Persons\CreateSocialMedia.sql" />
     <Build Include="StoredProcedures\Albums\CreateStreamingPlatform.sql" />
     <Build Include="StoredProcedures\Persons\AddAlbumToArtist.sql" />
+    <Build Include="StoredProcedures\Albums\AddStreamingPlatformToAlbum.sql" />
+    <Build Include="StoredProcedures\Albums\AddStreamingPlatformToTrack.sql" />
+    <Build Include="StoredProcedures\Albums\AddTrackToAlbum.sql" />
+    <Build Include="StoredProcedures\Persons\AddSocialMediaToPerson.sql" />
+    <Build Include="StoredProcedures\Persons\AddTrackToArtist.sql" />
+    <Build Include="StoredProcedures\Videos\AddArtistToAnalyse.sql" />
+    <Build Include="StoredProcedures\Videos\AddArtistToInterview.sql" />
+    <Build Include="StoredProcedures\Videos\AddArtistToFreestyle.sql" />
+    <Build Include="StoredProcedures\Videos\AddArtistToClip.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

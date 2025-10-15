@@ -3,7 +3,9 @@ using Tools.Cqs.Commands;
 
 namespace RapAddict.Domain.Repositories.Videos
 {
-    public interface IAnalyseRepository : ICommandHandler<CreateAnalyseCommand>
+    public interface IAnalyseRepository : 
+        ICommandHandler<CreateAnalyseCommand>,
+        ICommandHandler<AddArtistToAnalyseCommand>
     {
     }
 }

@@ -3,7 +3,9 @@ using Tools.Cqs.Commands;
 
 namespace RapAddict.Domain.Repositories.Videos
 {
-    public interface IInterviewRepository : ICommandHandler<CreateInterviewCommand>
+    public interface IInterviewRepository : 
+        ICommandHandler<CreateInterviewCommand>,
+        ICommandHandler<AddArtistToInterviewCommand>
     {
     }
 }

@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos.Albums;
 using RapAddict.Domain.Commands.Albums;
+using RapAddict.Domain.Commands.Persons;
+using RapAddict.Domain.Entities.Albums;
 using RapAddict.Domain.Repositories.Albums;
+using RapAddict.Domain.Services.Persons;
+using System;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Albums
@@ -28,6 +32,19 @@ namespace RapAddict.API.Controllers.Albums
             }
 
             return Ok(new { id = result.Data });
+        }
+
+        [HttpPost("{trackId}/StreamingPlatform")]
+        public IActionResult AddStreamingPlatform([FromRoute] int trackId, [FromBody] AddStreamingPlatformToTrackDto dto)
+        {
+            ICqsResult result = _trackService.Execute(new AddStreamingPlatformToTrackCommand(trackId, dto.StreamingPlatformId, dto.TrackPlatformId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return NoContent();
         }
     }
 }

@@ -28,5 +28,18 @@ namespace RapAddict.Domain.Services.Videos
                 return CqsResult.Failure(ex.Message);
             }
         }
+
+        public ICqsResult Execute(AddArtistToClipCommand command)
+        {
+            try
+            {
+                _dbConnection.ExecuteNonQuery("AddArtistToClip", true, command);
+                return CqsResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CqsResult.Failure(ex.Message);
+            }
+        }
     }
 }

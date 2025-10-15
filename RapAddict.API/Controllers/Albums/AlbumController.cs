@@ -29,5 +29,31 @@ namespace RapAddict.API.Controllers.Albums
 
             return Ok(new { id = result.Data });
         }
+
+        [HttpPost("{albumId}/StreamingPlatform")]
+        public IActionResult AddStreamingPlatform([FromRoute] int albumId, [FromBody] AddStreamingPlatformToAlbumDto dto)
+        {
+            ICqsResult resultAlbum = _albumService.Execute(new AddStreamingPlatformToAlbumCommand(albumId, dto.StreamingPlatformId, dto.AlbumPlatformId));
+
+            if (resultAlbum.IsFailure)
+            {
+                return BadRequest(resultAlbum);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPost("{albumId}/Track")]
+        public IActionResult AddTrack([FromRoute] int albumId, [FromBody] AddTrackToAlbumDto dto)
+        {
+            ICqsResult resultAlbum = _albumService.Execute(new AddTrackToAlbumCommand(albumId, dto.TrackId, dto.Position));
+
+            if (resultAlbum.IsFailure)
+            {
+                return BadRequest(resultAlbum);
+            }
+
+            return NoContent();
+        }
     }
 }

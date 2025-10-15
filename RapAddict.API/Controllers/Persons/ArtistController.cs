@@ -54,14 +54,27 @@ namespace RapAddict.API.Controllers.Persons
             return Ok(new { id = resultPerson.Data });
         }
 
-        [HttpPost("{artistId}/AddAlbum")]
+        [HttpPost("{artistId}/Album")]
         public IActionResult AddAlbumToArtist([FromRoute] int artistId,[FromBody] AddAlbumToArtistDto dto)
         {
-            ICqsResult resultAlbum = _artistService.Execute(new AddAlbumToArtistCommand(artistId, dto.AlbumId));
+            ICqsResult result = _artistService.Execute(new AddAlbumToArtistCommand(artistId, dto.AlbumId));
 
-            if (resultAlbum.IsFailure)
+            if (result.IsFailure)
             {
-                return BadRequest(resultAlbum);
+                return BadRequest(result);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPost("{artistId}/Track")]
+        public IActionResult AddTrackoArtist([FromRoute] int artistId, [FromBody] AddTrackToArtistDto dto)
+        {
+            ICqsResult result= _artistService.Execute(new AddTrackToArtistCommand(artistId, dto.TrackId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
             }
 
             return NoContent();

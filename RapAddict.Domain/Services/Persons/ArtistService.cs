@@ -40,5 +40,18 @@ namespace RapAddict.Domain.Services.Persons
                 return CqsResult.Failure(ex.Message);
             }
         }
+
+        public ICqsResult Execute(AddTrackToArtistCommand command)
+        {
+            try
+            {
+                _dbConnection.ExecuteNonQuery("AddTrackToArtist", true, command);
+                return CqsResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CqsResult.Failure(ex.Message);
+            }
+        }
     }
 }
