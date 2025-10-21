@@ -9,11 +9,12 @@ AS
 	WHERE a.Id = @Id
 
 	-- Get Album Tracks
-	SELECT t.Id, t.Title, Position, t.DurationMs, t.ClipId, t.Lyrics, t.ReleaseDate From Track as t
-	LEFT JOIN AlbumTracks as [at] on [at].AlbumId = @Id
+	SELECT t.Id, t.Title, [at].Position, t.DurationMs, t.ClipId, t.Lyrics, t.ReleaseDate, [at].AlbumId 
+	FROM Track as t
+	JOIN AlbumTracks as [at] on [at].TrackId = t.Id AND [at].AlbumId = @Id
 	ORDER BY Position ASC
 
-	-- Get Album StreamingPlatform
-	SELECT sp.[Name], asp.AlbumStreamingPlatformId as 'AlbumId' FROM [StreamingPlatform] as sp
-	LEFT JOIN [AlbumStreamingPlatforms] as asp ON asp.AlbumId = @Id
+	-- Get Album StreamingPlatforms
+	SELECT sp.[Name], asp.AlbumStreamingPlatformId as 'AlbumPlatformId' FROM [StreamingPlatform] as sp
+	JOIN [AlbumStreamingPlatforms] as asp ON asp.StreamingPlatformId = sp.Id AND asp.AlbumId = @Id
 RETURN 0

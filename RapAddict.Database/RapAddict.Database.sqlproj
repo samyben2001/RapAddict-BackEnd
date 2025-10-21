@@ -69,6 +69,7 @@
     <Folder Include="StoredProcedures\Persons" />
     <Folder Include="StoredProcedures\Videos" />
     <Folder Include="StoredProcedures\Users" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RapAddict.Database.publish.xml" />
@@ -128,8 +129,12 @@
     <Build Include="Tables\Persons\ArtistStreamingPlatforms.sql" />
     <Build Include="StoredProcedures\Persons\AddStreamingPlatformToArtist.sql" />
     <Build Include="StoredProcedures\Albums\GetAlbumTracks.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtists.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
