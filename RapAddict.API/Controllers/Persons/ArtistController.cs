@@ -1,7 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RapAddict.API.Models.Dtos.Albums;
 using RapAddict.API.Models.Dtos.Persons;
 using RapAddict.Domain.Commands.Persons;
+using RapAddict.Domain.Entities;
+using RapAddict.Domain.Entities.Albums;
+using RapAddict.Domain.Entities.Persons;
+using RapAddict.Domain.Queries.Albums;
+using RapAddict.Domain.Queries.Persons;
 using RapAddict.Domain.Repositories.Persons;
+using RapAddict.Domain.Services.Albums;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Persons
@@ -78,6 +85,19 @@ namespace RapAddict.API.Controllers.Persons
             }
 
             return NoContent();
+        }
+
+        [HttpGet()]
+        public IActionResult GetArtists([FromQuery] GetArtistsDto dto)
+        {
+            ICqsResult<PagedList<Artist>> result = _artistService.Execute(new GetArtistsQuery(dto.Pseudo, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
         }
     }
 }

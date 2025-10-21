@@ -47,5 +47,13 @@ BEGIN
     INSERT INTO [ArtistAlbums] ([AlbumId], [ArtistId]) VALUES (2,1);
     INSERT INTO [AlbumStreamingPlatforms] ([AlbumId], [StreamingPlatformId], [AlbumStreamingPlatformId]) VALUES (2,1, 'Autobahn4856Spotify');
     INSERT INTO [AlbumStreamingPlatforms] ([AlbumId], [StreamingPlatformId], [AlbumStreamingPlatformId]) VALUES (2,3, 'Autobahn54546Deezer');
+
+
+
+
+    INSERT INTO [Person] (Pseudo, FirstName, LastName, ImageUrl) VALUES ('Medhi Maïzi', 'Medhi', 'Maïzi', null);
+    INSERT INTO [Journalist] ([Id]) VALUES (3);
+    INSERT INTO [Person] (Pseudo, FirstName, LastName, ImageUrl) VALUES ('Le Rap en Mieux', 'Yannis', null, null);
+    INSERT INTO [ContentCreator] ([Id]) VALUES (4);
 END
 

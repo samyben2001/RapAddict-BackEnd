@@ -1,5 +1,9 @@
 ﻿using Dapper;
 using RapAddict.Domain.Commands.Persons;
+using RapAddict.Domain.Entities;
+using RapAddict.Domain.Entities.Albums;
+using RapAddict.Domain.Entities.Persons;
+using RapAddict.Domain.Queries.Persons;
 using RapAddict.Domain.Repositories.Persons;
 using System.Data;
 using System.Data.Common;
@@ -52,6 +56,26 @@ namespace RapAddict.Domain.Services.Persons
             catch (Exception ex)
             {
                 return CqsResult.Failure(ex.Message);
+            }
+        }
+
+        public ICqsResult<PagedList<Artist>> Execute(GetArtistsQuery query)
+        {
+            try
+            {
+                using (var multi = _dbConnection.QueryMultiple("Getartists", param: query, commandType: CommandType.StoredProcedure))
+                {
+                    IEnumerable<Artist> artists = multi.Read<Artist>().ToList();
+                    int count = multi.ReadFirst<int>();
+
+                    PagedList<Artist> pagedArtists = new PagedList<Artist>(artists, query.PageNumber, query.PageSize, count);
+
+                    return CqsResult<PagedList<Artist>>.Success(pagedArtists);
+                }
+            }
+            catch (Exception ex)
+            {
+                return CqsResult<PagedList<Artist>>.Failure(ex.Message);
             }
         }
     }

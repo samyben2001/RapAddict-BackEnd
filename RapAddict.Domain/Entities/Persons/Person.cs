@@ -9,6 +9,13 @@
         public string? ImageUrl { get; }
 
 
+        public Person(int id, string pseudo, string? imageUrl)
+        {
+            Id = id;
+            Pseudo = pseudo;
+            ImageUrl = imageUrl;
+        }
+
         public Person(int id, string pseudo, string? firstName, string? lastName, string? imageUrl)
         {
             Id = id;
