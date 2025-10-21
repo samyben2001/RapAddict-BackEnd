@@ -3,14 +3,17 @@
 AS
 	SET NOCOUNT ON;
 
-	SELECT a.[Id], a.[Title], a.[ReleaseDate], a.[DurationMs], a.[CoverUrl], sp.[Name] as 'StreamingPlatform', asp.AlbumStreamingPlatformId as 'StreamingPlatformId' 
+	-- Get Album
+	SELECT a.[Id], a.[Title], a.[ReleaseDate], a.[DurationMs], a.[CoverUrl]
 	FROM [Album] as a
-	LEFT JOIN AlbumStreamingPlatforms as asp ON asp.AlbumId = a.Id
-	LEFT JOIN StreamingPlatform as sp ON sp.Id = asp.StreamingPlatformId
 	WHERE a.Id = @Id
 
+	-- Get Album Tracks
 	SELECT t.Id, t.Title, Position, t.DurationMs, t.ClipId, t.Lyrics, t.ReleaseDate From Track as t
-	JOIN AlbumTracks on t.Id = TrackId
-	JOIN Album as a on a.Id = @Id 
+	LEFT JOIN AlbumTracks as [at] on [at].AlbumId = @Id
 	ORDER BY Position ASC
+
+	-- Get Album StreamingPlatform
+	SELECT sp.[Name], asp.AlbumStreamingPlatformId as 'AlbumId' FROM [StreamingPlatform] as sp
+	LEFT JOIN [AlbumStreamingPlatforms] as asp ON asp.AlbumId = @Id
 RETURN 0

@@ -87,6 +87,7 @@ namespace RapAddict.Domain.Services.Albums
                 {
                     AlbumDetails album = multi.ReadFirst<AlbumDetails>();
                     album.Tracks = multi.Read<Track>().ToList();
+                    album.AlbumStreamingPlatforms = multi.Read<AlbumStreamingPlatform>().ToList();
 
                     return CqsResult<AlbumDetails>.Success(album);
                 }
