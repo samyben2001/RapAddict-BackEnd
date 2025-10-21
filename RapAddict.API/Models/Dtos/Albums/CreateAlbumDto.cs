@@ -9,12 +9,14 @@ namespace RapAddict.API.Models.Dtos.Albums
 
         public DateTime? ReleaseDate { get; }
         public int? DurationMs { get; }
+        public string? CoverUrl { get; }
 
-        public CreateAlbumDto(string title, DateTime? releaseDate, int? durationMs)
+        public CreateAlbumDto(string title, DateTime? releaseDate, int? durationMs, string? coverUrl)
         {
             Title = title;
             ReleaseDate = releaseDate;
             DurationMs = durationMs == 0 ? null : durationMs;
+            CoverUrl = string.IsNullOrWhiteSpace(coverUrl) ? null : coverUrl;
         }
     }
 }

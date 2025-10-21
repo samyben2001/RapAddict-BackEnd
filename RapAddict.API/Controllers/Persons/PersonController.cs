@@ -21,7 +21,7 @@ namespace RapAddict.API.Controllers.Persons
         [HttpPost]
         public IActionResult Create(CreatePersonDto dto)
         {
-            ICqsResult<int> result = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName));
+            ICqsResult<int> result = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName, dto.ImageUrl));
 
             if (result.IsFailure)
             {

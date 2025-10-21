@@ -22,7 +22,7 @@ namespace RapAddict.API.Controllers.Persons
         [HttpPost]
         public IActionResult Create([FromBody] CreateJournalistDto dto)
         {
-            ICqsResult<int> resultP = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName));
+            ICqsResult<int> resultP = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName, dto.ImageUrl));
             if (resultP.IsFailure)
             {
                 return BadRequest(resultP);

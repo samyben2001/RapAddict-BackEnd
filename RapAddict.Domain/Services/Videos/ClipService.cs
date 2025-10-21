@@ -1,8 +1,9 @@
-﻿using RapAddict.Domain.Commands.Videos;
+﻿using Dapper;
+using RapAddict.Domain.Commands.Videos;
 using RapAddict.Domain.Repositories.Videos;
+using System.Data;
 using System.Data.Common;
 using Tools.Cqs.Results;
-using Tools.Database;
 
 namespace RapAddict.Domain.Services.Videos
 {
@@ -20,7 +21,7 @@ namespace RapAddict.Domain.Services.Videos
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("CreateClip", true, command);
+                _dbConnection.Execute("CreateClip", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)
@@ -33,7 +34,7 @@ namespace RapAddict.Domain.Services.Videos
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("AddArtistToClip", true, command);
+                _dbConnection.Execute("AddArtistToClip", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)

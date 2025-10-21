@@ -1,8 +1,9 @@
-﻿using RapAddict.Domain.Commands.Albums;
+﻿using Dapper;
+using RapAddict.Domain.Commands.Albums;
 using RapAddict.Domain.Repositories.Albums;
+using System.Data;
 using System.Data.Common;
 using Tools.Cqs.Results;
-using Tools.Database;
 
 namespace RapAddict.Domain.Services.Albums
 {
@@ -20,15 +21,8 @@ namespace RapAddict.Domain.Services.Albums
         {
             try
             {
-                object? result = _dbConnection.ExecuteScalar("CreateStreamingPlatform", true, command);
-                if (result is int id)
-                {
-                    return CqsResult<int>.Success(id);
-                }
-                else
-                {
-                    throw new Exception("Failed to create streaming platform: returned value was null or not an integer.");
-                }
+                int result = _dbConnection.ExecuteScalar<int>("CreateStreamingPlatform", param: command, commandType: CommandType.StoredProcedure);
+                return CqsResult<int>.Success(result);
             }
             catch (Exception ex)
             {

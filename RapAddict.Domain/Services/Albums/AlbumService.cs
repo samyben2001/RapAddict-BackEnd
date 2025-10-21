@@ -1,12 +1,12 @@
-﻿using RapAddict.Domain.Commands.Albums;
+﻿using Dapper;
+using RapAddict.Domain.Commands.Albums;
+using RapAddict.Domain.Entities;
 using RapAddict.Domain.Entities.Albums;
-using RapAddict.Domain.Mappers;
 using RapAddict.Domain.Queries.Albums;
 using RapAddict.Domain.Repositories.Albums;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using Tools.Cqs.Results;
-using Tools.Database;
 
 namespace RapAddict.Domain.Services.Albums
 {
@@ -24,15 +24,8 @@ namespace RapAddict.Domain.Services.Albums
         {
             try
             {
-                object? result = _dbConnection.ExecuteScalar("CreateAlbum", true, command);
-                if (result is int id)
-                {
-                    return CqsResult<int>.Success(id);
-                }
-                else
-                {
-                    throw new Exception("Failed to create album: returned value was null or not an integer.");
-                }
+                int result = _dbConnection.ExecuteScalar<int>("CreateAlbum", param: command, commandType: CommandType.StoredProcedure);
+                return CqsResult<int>.Success(result);
             }
             catch (Exception ex)
             {
@@ -44,7 +37,7 @@ namespace RapAddict.Domain.Services.Albums
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("AddStreamingPlatformToAlbum", true, command);
+                _dbConnection.Execute("AddStreamingPlatformToAlbum", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)
@@ -57,7 +50,7 @@ namespace RapAddict.Domain.Services.Albums
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("AddTrackToAlbum", true, command);
+                _dbConnection.Execute("AddTrackToAlbum", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)
@@ -66,17 +59,41 @@ namespace RapAddict.Domain.Services.Albums
             }
         }
 
-        public ICqsResult<IEnumerable<Album>> Execute(GetAlbumsQuery query)
+        public ICqsResult<PagedList<Album>> Execute(GetAlbumsQuery query)
         {
             try
             {
-                IEnumerable<Album> albums = _dbConnection.ExecuteReader("GetAlbums", dr => dr.ToAlbum(), true, query).ToList();
+                using (var multi = _dbConnection.QueryMultiple("GetAlbums", param: query, commandType: CommandType.StoredProcedure))
+                {
+                    IEnumerable<Album> albums = multi.Read<Album>().ToList();
+                    int count = multi.ReadFirst<int>();
 
-                return CqsResult<IEnumerable<Album>>.Success(albums);
+                    PagedList<Album> pagedAlbums = new PagedList<Album>(albums, query.PageNumber, query.PageSize, count);
+
+                    return CqsResult<PagedList<Album>>.Success(pagedAlbums);
+                }
             }
             catch (Exception ex)
             {
-                return CqsResult<IEnumerable<Album>>.Failure(ex.Message);
+                return CqsResult<PagedList<Album>>.Failure(ex.Message);
+            }
+        }
+
+        public ICqsResult<AlbumDetails> Execute(GetAlbumQuery query)
+        {
+            try
+            {
+                using (var multi = _dbConnection.QueryMultiple("GetAlbum", param: query, commandType: CommandType.StoredProcedure))
+                {
+                    AlbumDetails album = multi.ReadFirst<AlbumDetails>();
+                    album.Tracks = multi.Read<Track>().ToList();
+
+                    return CqsResult<AlbumDetails>.Success(album);
+                }
+            }
+            catch (Exception ex)
+            {
+                return CqsResult<AlbumDetails>.Failure(ex.Message);
             }
         }
     }

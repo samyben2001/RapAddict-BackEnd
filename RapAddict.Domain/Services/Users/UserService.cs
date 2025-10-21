@@ -1,8 +1,9 @@
-﻿using RapAddict.Domain.Commands.Users;
+﻿using Dapper;
+using RapAddict.Domain.Commands.Users;
 using RapAddict.Domain.Repositories.Users;
+using System.Data;
 using System.Data.Common;
 using Tools.Cqs.Results;
-using Tools.Database;
 
 namespace RapAddict.Domain.Services.Users
 {
@@ -19,15 +20,8 @@ namespace RapAddict.Domain.Services.Users
         {
             try
             {
-                object? result = _dbConnection.ExecuteScalar("CreateUser", true, command);
-                if (result is int id)
-                {
-                    return CqsResult<int>.Success(id);
-                }
-                else
-                {
-                    throw new Exception("Failed to create user: returned value was null or not an integer.");
-                }
+                int result = _dbConnection.ExecuteScalar<int>("CreateUser", param: command, commandType: CommandType.StoredProcedure);
+                return CqsResult<int>.Success(result);
             }
             catch (Exception ex)
             {

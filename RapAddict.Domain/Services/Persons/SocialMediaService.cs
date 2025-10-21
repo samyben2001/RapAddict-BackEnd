@@ -1,8 +1,9 @@
-﻿using RapAddict.Domain.Commands.Persons;
+﻿using Dapper;
+using RapAddict.Domain.Commands.Persons;
 using RapAddict.Domain.Repositories.Persons;
+using System.Data;
 using System.Data.Common;
 using Tools.Cqs.Results;
-using Tools.Database;
 
 namespace RapAddict.Domain.Services.Persons
 {
@@ -19,16 +20,9 @@ namespace RapAddict.Domain.Services.Persons
         public ICqsResult<int> Execute(CreateSocialMediaCommand command)
         {
             try
-            {
-                object? result = _dbConnection.ExecuteScalar("CreateSocialMedia", true, command);
-                if (result is int id)
-                {
-                    return CqsResult<int>.Success(id);
-                }
-                else
-                {
-                    throw new Exception("Failed to create social media: returned value was null or not an integer.");
-                }
+            { 
+                int result = _dbConnection.ExecuteScalar<int>("CreateSocialMedia", param: command, commandType: CommandType.StoredProcedure);
+                return CqsResult<int>.Success(result);
             }
             catch (Exception ex)
             {

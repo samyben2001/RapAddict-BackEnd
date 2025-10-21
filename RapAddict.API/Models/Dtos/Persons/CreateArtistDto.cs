@@ -5,7 +5,7 @@
         public int[]? AlbumsId { get; }
 
 
-        public CreateArtistDto(string pseudo, string? firstName, string? lastName, int[]? albumsId) : base(pseudo, firstName, lastName)
+        public CreateArtistDto(string pseudo, string? firstName, string? lastName, string? imageUrl, int[]? albumsId) : base(pseudo, firstName, lastName, imageUrl)
         {
             AlbumsId = albumsId;
         }

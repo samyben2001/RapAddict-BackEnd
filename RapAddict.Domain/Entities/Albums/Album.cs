@@ -6,13 +6,15 @@
         public string Title { get; }
         public DateTime? ReleaseDate { get; }
         public int? DurationMs { get; }
+        public string? CoverUrl { get; }
 
-        public Album(int id, string title, DateTime? releaseDate, int? durationMs)
+        public Album(int id, string title, DateTime? releaseDate, int? durationMs, string? coverUrl)
         {
             Id = id;
             Title = title;
             ReleaseDate = releaseDate;
             DurationMs = durationMs;
+            CoverUrl = coverUrl;
         }
     }
 }

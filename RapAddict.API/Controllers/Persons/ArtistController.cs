@@ -23,7 +23,7 @@ namespace RapAddict.API.Controllers.Persons
         public IActionResult Create([FromBody] CreateArtistDto dto)
         {
             // Create Person in Database
-            ICqsResult<int> resultPerson = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName));
+            ICqsResult<int> resultPerson = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName, dto.ImageUrl));
             if (resultPerson.IsFailure)
             {
                 return BadRequest(resultPerson);
@@ -55,7 +55,7 @@ namespace RapAddict.API.Controllers.Persons
         }
 
         [HttpPost("{artistId}/Album")]
-        public IActionResult AddAlbumToArtist([FromRoute] int artistId,[FromBody] AddAlbumToArtistDto dto)
+        public IActionResult AddAlbumToArtist([FromRoute] int artistId, [FromBody] AddAlbumToArtistDto dto)
         {
             ICqsResult result = _artistService.Execute(new AddAlbumToArtistCommand(artistId, dto.AlbumId));
 
@@ -70,7 +70,7 @@ namespace RapAddict.API.Controllers.Persons
         [HttpPost("{artistId}/Track")]
         public IActionResult AddTrackoArtist([FromRoute] int artistId, [FromBody] AddTrackToArtistDto dto)
         {
-            ICqsResult result= _artistService.Execute(new AddTrackToArtistCommand(artistId, dto.TrackId));
+            ICqsResult result = _artistService.Execute(new AddTrackToArtistCommand(artistId, dto.TrackId));
 
             if (result.IsFailure)
             {

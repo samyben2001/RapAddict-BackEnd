@@ -124,6 +124,10 @@
     <Build Include="StoredProcedures\Videos\AddArtistToFreestyle.sql" />
     <Build Include="StoredProcedures\Videos\AddArtistToClip.sql" />
     <Build Include="StoredProcedures\Albums\GetAlbums.sql" />
+    <Build Include="StoredProcedures\Albums\GetAlbum.sql" />
+    <Build Include="Tables\Persons\ArtistStreamingPlatforms.sql" />
+    <Build Include="StoredProcedures\Persons\AddStreamingPlatformToArtist.sql" />
+    <Build Include="StoredProcedures\Albums\GetAlbumTracks.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

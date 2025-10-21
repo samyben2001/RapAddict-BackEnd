@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[CreateAlbum]
 	@Title nvarchar(100),
 	@ReleaseDate datetime2(7),
-	@DurationMs int
+	@DurationMs int,
+	@CoverUrl nvarchar(2083)
 AS
 	BEGIN
 		BEGIN TRY
@@ -10,9 +11,9 @@ AS
 			IF LEN(TRIM(@Title)) = 0
 				RAISERROR('Le titre est requis.', 16, 1);
 
-			INSERT INTO [Album] ([Title], [ReleaseDate], [DurationMs])
+			INSERT INTO [Album] ([Title], [ReleaseDate], [DurationMs], [CoverUrl])
 			OUTPUT [inserted].[Id]
-			VALUES (@Title, @ReleaseDate, @DurationMs)
+			VALUES (@Title, @ReleaseDate, @DurationMs, @CoverUrl)
 
 		END TRY
 		BEGIN CATCH

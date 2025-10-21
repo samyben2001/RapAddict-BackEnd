@@ -2,7 +2,7 @@
 {
     public class ContentCreator : Person
     {
-        public ContentCreator(int id, string pseudo, string? firstName, string? lastName) : base(id, pseudo, firstName, lastName)
+        public ContentCreator(int id, string pseudo, string? firstName, string? lastName, string? imageUrl) : base(id, pseudo, firstName, lastName, imageUrl)
         {
         }
     }

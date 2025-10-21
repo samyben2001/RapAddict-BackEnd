@@ -2,7 +2,7 @@
 {
     public class CreateContentCreatorDto : CreatePersonDto
     {
-        public CreateContentCreatorDto(string pseudo, string? firstName, string? lastName) : base(pseudo, firstName, lastName)
+        public CreateContentCreatorDto(string pseudo, string? firstName, string? lastName, string? imageUrl) : base(pseudo, firstName, lastName, imageUrl)
         {
         }
     }

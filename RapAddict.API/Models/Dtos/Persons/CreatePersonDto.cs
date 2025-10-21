@@ -13,12 +13,14 @@ namespace RapAddict.API.Models.Dtos.Persons
 
         [StringLength(100, MinimumLength = 2)]
         public string? LastName { get; }
+        public string? ImageUrl { get; }
 
-        public CreatePersonDto(string pseudo, string? firstName, string? lastName)
+        public CreatePersonDto(string pseudo, string? firstName, string? lastName, string? imageUrl)
         {
             Pseudo = pseudo;
             FirstName = string.IsNullOrWhiteSpace(firstName) ? null : firstName;
             LastName = string.IsNullOrWhiteSpace(lastName) ? null : lastName;
+            ImageUrl = string.IsNullOrWhiteSpace(imageUrl) ? null : imageUrl;
         }
     }
 }

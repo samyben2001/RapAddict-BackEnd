@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos.Albums;
 using RapAddict.Domain.Commands.Albums;
+using RapAddict.Domain.Entities;
 using RapAddict.Domain.Entities.Albums;
 using RapAddict.Domain.Queries.Albums;
 using RapAddict.Domain.Repositories.Albums;
@@ -22,7 +23,7 @@ namespace RapAddict.API.Controllers.Albums
         [HttpPost]
         public IActionResult Create(CreateAlbumDto dto)
         {
-            ICqsResult<int> result = _albumService.Execute(new CreateAlbumCommand(dto.Title,dto.ReleaseDate,dto.DurationMs));
+            ICqsResult<int> result = _albumService.Execute(new CreateAlbumCommand(dto.Title,dto.ReleaseDate,dto.DurationMs, dto.CoverUrl));
 
             if (result.IsFailure)
             {
@@ -61,14 +62,27 @@ namespace RapAddict.API.Controllers.Albums
         [HttpGet()]
         public IActionResult GetAlbums([FromQuery] GetAlbumsDto dto)
         {
-            ICqsResult<IEnumerable<Album>> result = _albumService.Execute(new GetAlbumsQuery(dto.Title, dto.Year, dto.Month, dto.Day, dto.PageNumber, dto.PageSize));
+            ICqsResult<PagedList<Album>> result = _albumService.Execute(new GetAlbumsQuery(dto.Title, dto.Year, dto.Month, dto.Day, dto.PageNumber, dto.PageSize));
 
             if (result.IsFailure)
             {
                 return BadRequest(result);
             }
 
-            return Ok(new { id = result.Data });
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{albumId}")]
+        public IActionResult GetAlbum([FromRoute] int albumId)
+        {
+            ICqsResult<AlbumDetails> result = _albumService.Execute(new GetAlbumQuery(albumId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
         }
     }
 }

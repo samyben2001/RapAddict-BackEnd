@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Tools.Cqs\Tools.Cqs.csproj" />
-    <ProjectReference Include="..\Tools.Database\Tools.Database.csproj" />
   </ItemGroup>
 
 </Project>

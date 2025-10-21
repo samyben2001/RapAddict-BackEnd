@@ -7,12 +7,14 @@ namespace RapAddict.Domain.Commands.Albums
         public string Title { get; }
         public DateTime? ReleaseDate { get; }
         public int? DurationMs { get; }
+        public string? CoverUrl { get; }
 
-        public CreateAlbumCommand(string title, DateTime? releaseDate, int? durationMs)
+        public CreateAlbumCommand(string title, DateTime? releaseDate, int? durationMs, string? coverUrl)
         {
             Title = title;
             ReleaseDate = releaseDate;
             DurationMs = durationMs;
+            CoverUrl = coverUrl;
         }
     }
 }

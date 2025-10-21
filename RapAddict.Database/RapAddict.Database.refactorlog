@@ -84,4 +84,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="PersonSocialMediaPlatformId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="ddcf3338-7f26-49d7-b0b2-939f005d6b55" ChangeDateTime="10/17/2025 14:54:49">
+    <Property Name="ElementName" Value="[dbo].[ArtistStreamingPlatform].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ArtistStreamingPlatform]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArtistId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7cbe7e1c-cd4b-4a01-863d-9d016b08e866" ChangeDateTime="10/17/2025 15:02:26">
+    <Property Name="ElementName" Value="[dbo].[ArtistStreamingPlatforms].[ArtistStreaminPlatformId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ArtistStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArtistStreamingPlatformId" />
+  </Operation>
 </Operations>

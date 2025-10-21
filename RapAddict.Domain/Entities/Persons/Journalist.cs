@@ -2,7 +2,7 @@
 {
     public class Journalist : Person
     {
-        public Journalist(int id, string pseudo, string? firstName, string? lastName) : base(id, pseudo, firstName, lastName)
+        public Journalist(int id, string pseudo, string? firstName, string? lastName, string? imageUrl) : base(id, pseudo, firstName, lastName, imageUrl)
         {
         }
     }

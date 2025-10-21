@@ -6,13 +6,16 @@
         public string Pseudo { get; }
         public string? FirstName { get; }
         public string? LastName { get; }
+        public string? ImageUrl { get; }
 
-        public Person(int id, string pseudo, string? firstName, string? lastName)
+
+        public Person(int id, string pseudo, string? firstName, string? lastName, string? imageUrl)
         {
             Id = id;
             Pseudo = pseudo;
             FirstName = firstName;
             LastName = lastName;
+            ImageUrl = imageUrl;
         }
     }
 }

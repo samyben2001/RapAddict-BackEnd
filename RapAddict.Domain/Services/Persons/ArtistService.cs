@@ -1,8 +1,9 @@
-﻿using RapAddict.Domain.Commands.Persons;
+﻿using Dapper;
+using RapAddict.Domain.Commands.Persons;
 using RapAddict.Domain.Repositories.Persons;
+using System.Data;
 using System.Data.Common;
 using Tools.Cqs.Results;
-using Tools.Database;
 
 namespace RapAddict.Domain.Services.Persons
 {
@@ -19,7 +20,7 @@ namespace RapAddict.Domain.Services.Persons
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("CreateArtist", true, command);
+                _dbConnection.Execute("CreateArtist", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)
@@ -32,7 +33,7 @@ namespace RapAddict.Domain.Services.Persons
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("AddAlbumToArtist", true, command);
+                _dbConnection.Execute("AddAlbumToArtist", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)
@@ -45,7 +46,7 @@ namespace RapAddict.Domain.Services.Persons
         {
             try
             {
-                _dbConnection.ExecuteNonQuery("AddTrackToArtist", true, command);
+                _dbConnection.Execute("AddTrackToArtist", param: command, commandType: CommandType.StoredProcedure);
                 return CqsResult.Success();
             }
             catch (Exception ex)

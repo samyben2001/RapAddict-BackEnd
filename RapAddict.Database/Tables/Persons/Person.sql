@@ -4,5 +4,7 @@
     [Pseudo] NVARCHAR(100) NOT NULL, 
     [FirstName] NVARCHAR(100) NULL, 
     [LastName] NVARCHAR(100) NULL, 
+    [AddedDate] DATETIME2 NOT NULL DEFAULT GETDATE(), 
+    [ImageUrl] NVARCHAR(2083) NULL, 
     CONSTRAINT [PK_Person] PRIMARY KEY ([Id])
 )
