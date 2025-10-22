@@ -85,7 +85,11 @@ namespace RapAddict.Domain.Services.Albums
             {
                 using (var multi = _dbConnection.QueryMultiple("GetAlbum", param: query, commandType: CommandType.StoredProcedure))
                 {
-                    AlbumDetails album = multi.ReadFirst<AlbumDetails>();
+                    AlbumDetails? album = multi.ReadSingleOrDefault<AlbumDetails>();
+
+                    if(album is null)
+                        return CqsResult<AlbumDetails>.Failure("Album Not Found");
+
                     album.Tracks = multi.Read<Track>().ToList();
                     album.AlbumStreamingPlatforms = multi.Read<AlbumStreamingPlatform>().ToList();
 

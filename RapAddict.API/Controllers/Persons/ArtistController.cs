@@ -29,7 +29,7 @@ namespace RapAddict.API.Controllers.Persons
         [HttpPost]
         public IActionResult Create([FromBody] CreateArtistDto dto)
         {
-            // Create Person in Database
+            // Create PersonDetails in Database
             ICqsResult<int> resultPerson = _personService.Execute(new CreatePersonCommand(dto.Pseudo, dto.FirstName, dto.LastName, dto.ImageUrl));
             if (resultPerson.IsFailure)
             {
@@ -91,6 +91,19 @@ namespace RapAddict.API.Controllers.Persons
         public IActionResult GetArtists([FromQuery] GetArtistsDto dto)
         {
             ICqsResult<PagedList<Artist>> result = _artistService.Execute(new GetArtistsQuery(dto.Pseudo, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{artistId}")]
+        public IActionResult GetArtist([FromRoute] int artistId)
+        {
+            ICqsResult<ArtistDetails> result = _artistService.Execute(new GetArtistQuery(artistId));
 
             if (result.IsFailure)
             {

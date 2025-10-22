@@ -130,6 +130,7 @@
     <Build Include="StoredProcedures\Persons\AddStreamingPlatformToArtist.sql" />
     <Build Include="StoredProcedures\Albums\GetAlbumTracks.sql" />
     <Build Include="StoredProcedures\Persons\GetArtists.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtist.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

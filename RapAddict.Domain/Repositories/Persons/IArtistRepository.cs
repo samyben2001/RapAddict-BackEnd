@@ -11,7 +11,8 @@ namespace RapAddict.Domain.Repositories.Persons
         ICommandHandler<CreateArtistCommand>,
         ICommandHandler<AddAlbumToArtistCommand>,
         ICommandHandler<AddTrackToArtistCommand>,
-        IQueryHandler<GetArtistsQuery, PagedList<Artist>>
+        IQueryHandler<GetArtistsQuery, PagedList<Artist>>,
+        IQueryHandler<GetArtistQuery, ArtistDetails>
     {
     }
 }

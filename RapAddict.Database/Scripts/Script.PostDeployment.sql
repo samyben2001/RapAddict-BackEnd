@@ -11,6 +11,10 @@ Post-Deployment Script Template
 */
 IF ((SELECT COUNT(*) FROM StreamingPlatform) = 0) 
 BEGIN
+    
+    INSERT INTO [SocialMediaPlatform]([Name]) VALUES ('Facebook');
+    INSERT INTO [SocialMediaPlatform]([Name]) VALUES ('X (Twitter)');
+
     INSERT INTO [StreamingPlatform]([Name]) VALUES ('Spotify');
     INSERT INTO [StreamingPlatform]([Name]) VALUES ('Apple Music');
     INSERT INTO [StreamingPlatform]([Name]) VALUES ('Deezer');
@@ -20,12 +24,15 @@ BEGIN
     INSERT INTO [Artist] ([Id]) VALUES (1);
     INSERT INTO [ArtistStreamingPlatforms] ([ArtistId], [StreamingPlatformId], [ArtistStreamingPlatformId]) VALUES (1,1, 'spot1');
     INSERT INTO [ArtistStreamingPlatforms] ([ArtistId], [StreamingPlatformId], [ArtistStreamingPlatformId]) VALUES (1,2, 'apm1');
+    INSERT INTO [PersonSocialMediaPlatforms] ([PersonId], [SocialMediaPlatformId], [PersonSocialMediaPlatformId]) VALUES (1,1, 'fbsch1');
 
 
     INSERT INTO [Person] (Pseudo, FirstName, LastName, ImageUrl) VALUES ('Scylla', 'Gilles', null, null);
     INSERT INTO [Artist] ([Id]) VALUES (2);
     INSERT INTO [ArtistStreamingPlatforms] ([ArtistId], [StreamingPlatformId], [ArtistStreamingPlatformId]) VALUES (2,1, 'spot2');
     INSERT INTO [ArtistStreamingPlatforms] ([ArtistId], [StreamingPlatformId], [ArtistStreamingPlatformId]) VALUES (2,3, 'deez1');
+    INSERT INTO [PersonSocialMediaPlatforms] ([PersonId], [SocialMediaPlatformId], [PersonSocialMediaPlatformId]) VALUES (2,1, 'fbscy1');
+    INSERT INTO [PersonSocialMediaPlatforms] ([PersonId], [SocialMediaPlatformId], [PersonSocialMediaPlatformId]) VALUES (2,2, 'xscy1');
 
 
     INSERT INTO [Album] ([Title], [DurationMs], [ReleaseDate]) VALUES ('Portes du désert', '455500', '2025-02-16');

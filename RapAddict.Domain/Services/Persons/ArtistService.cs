@@ -78,5 +78,26 @@ namespace RapAddict.Domain.Services.Persons
                 return CqsResult<PagedList<Artist>>.Failure(ex.Message);
             }
         }
+
+        public ICqsResult<ArtistDetails> Execute(GetArtistQuery query)
+        {
+            try
+            {
+                using (var multi = _dbConnection.QueryMultiple("Getartist", param: query, commandType: CommandType.StoredProcedure))
+                {
+                    ArtistDetails? artist = multi.ReadSingleOrDefault<ArtistDetails>();
+
+                    if (artist is null)
+                        return CqsResult<ArtistDetails>.Failure("Artist Not Found");
+                    artist.ArtistStreamingPlatforms = multi.Read<ArtistStreamingPlatform>().ToList();
+
+                    return CqsResult<ArtistDetails>.Success(artist);
+                }
+            }
+            catch (Exception ex)
+            {
+                return CqsResult<ArtistDetails>.Failure(ex.Message);
+            }
+        }
     }
 }
