@@ -1,18 +1,14 @@
 ﻿namespace RapAddict.API.Models.Dtos.Persons
 {
-    public class GetArtistsDto
+    public class GetArtistsDto: PagedListDto
     {
         public string? Pseudo { get; set; } = null;
-        public int PageNumber { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
 
-        public GetArtistsDto() { }
+        public GetArtistsDto(): base() { }
 
-        public GetArtistsDto(string? pseudo, int pageNumber, int pageSize)
+        public GetArtistsDto(string? pseudo, int pageNumber, int pageSize) : base(pageNumber, pageSize)
         {
             Pseudo = pseudo;
-            PageNumber = pageNumber;
-            PageSize = pageSize;
         }
     }
 }

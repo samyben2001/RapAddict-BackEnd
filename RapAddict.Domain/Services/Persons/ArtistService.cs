@@ -65,8 +65,8 @@ namespace RapAddict.Domain.Services.Persons
             {
                 using (var multi = _dbConnection.QueryMultiple("Getartists", param: query, commandType: CommandType.StoredProcedure))
                 {
-                    IEnumerable<Artist> artists = multi.Read<Artist>().ToList();
                     int count = multi.ReadFirst<int>();
+                    IEnumerable<Artist> artists = multi.Read<Artist>().ToList();
 
                     PagedList<Artist> pagedArtists = new PagedList<Artist>(artists, query.PageNumber, query.PageSize, count);
 

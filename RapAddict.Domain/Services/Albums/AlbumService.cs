@@ -2,6 +2,7 @@
 using RapAddict.Domain.Commands.Albums;
 using RapAddict.Domain.Entities;
 using RapAddict.Domain.Entities.Albums;
+using RapAddict.Domain.Entities.Persons;
 using RapAddict.Domain.Queries.Albums;
 using RapAddict.Domain.Repositories.Albums;
 using System.Data;
@@ -65,8 +66,14 @@ namespace RapAddict.Domain.Services.Albums
             {
                 using (var multi = _dbConnection.QueryMultiple("GetAlbums", param: query, commandType: CommandType.StoredProcedure))
                 {
-                    IEnumerable<Album> albums = multi.Read<Album>().ToList();
                     int count = multi.ReadFirst<int>();
+                    IEnumerable<Album> albums = multi.Read<Album>().ToList();
+
+                    // Get albums artists (maybe delete)
+                    foreach (Album album in albums)
+                    {
+                        album.Artists = _dbConnection.Query<Artist>("GetAlbumArtists", param: new { album.Id }, commandType: CommandType.StoredProcedure).ToList();
+                    }
 
                     PagedList<Album> pagedAlbums = new PagedList<Album>(albums, query.PageNumber, query.PageSize, count);
 
@@ -87,10 +94,11 @@ namespace RapAddict.Domain.Services.Albums
                 {
                     AlbumDetails? album = multi.ReadSingleOrDefault<AlbumDetails>();
 
-                    if(album is null)
+                    if (album is null)
                         return CqsResult<AlbumDetails>.Failure("Album Not Found");
 
                     album.Tracks = multi.Read<Track>().ToList();
+                    album.Artists = multi.Read<Artist>().ToList();
                     album.AlbumStreamingPlatforms = multi.Read<AlbumStreamingPlatform>().ToList();
 
                     return CqsResult<AlbumDetails>.Success(album);

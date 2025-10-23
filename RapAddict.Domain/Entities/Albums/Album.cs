@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using RapAddict.Domain.Entities.Persons;
+using System.Text.Json.Serialization;
 
 namespace RapAddict.Domain.Entities.Albums
 {
@@ -9,6 +10,7 @@ namespace RapAddict.Domain.Entities.Albums
         public DateTime? ReleaseDate { get; }
         public int? DurationMs { get; }
         public string? CoverUrl { get; }
+        public List<Artist> Artists { get; set; } = new List<Artist>();
 
         public Album(int id, string title, DateTime? releaseDate, int? durationMs, string? coverUrl)
         {

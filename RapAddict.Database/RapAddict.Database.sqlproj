@@ -131,6 +131,13 @@
     <Build Include="StoredProcedures\Albums\GetAlbumTracks.sql" />
     <Build Include="StoredProcedures\Persons\GetArtists.sql" />
     <Build Include="StoredProcedures\Persons\GetArtist.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtistAlbums.sql" />
+    <Build Include="StoredProcedures\Albums\GetAlbumArtists.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtistClips.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtistInterviews.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtistFreestyles.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtistAnalyses.sql" />
+    <Build Include="StoredProcedures\Persons\GetArtistTracks.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

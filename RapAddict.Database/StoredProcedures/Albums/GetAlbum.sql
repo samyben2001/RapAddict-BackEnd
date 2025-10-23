@@ -15,6 +15,16 @@ AS
 	WHERE [at].AlbumId = @Id
 	ORDER BY Position ASC
 
+	-- Get Album Artists
+	SELECT 
+        p.[Id], p.[Pseudo], p.[AddedDate], p.[ImageUrl]
+    FROM 
+        [Artist] as a
+    JOIN 
+        [Person] as p ON p.Id = a.Id
+	JOIN [ArtistAlbums] as aa ON aa.ArtistId = p.Id
+    WHERE aa.AlbumId = @Id
+
 	-- Get Album StreamingPlatforms
 	SELECT sp.[Name], asp.AlbumStreamingPlatformId as 'AlbumPlatformId' FROM [StreamingPlatform] as sp
 	JOIN [AlbumStreamingPlatforms] as asp ON asp.StreamingPlatformId = sp.Id 
