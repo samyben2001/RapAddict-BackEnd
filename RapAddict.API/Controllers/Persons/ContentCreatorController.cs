@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos.Persons;
 using RapAddict.Domain.Commands.Persons;
+using RapAddict.Domain.Entities;
+using RapAddict.Domain.Entities.Persons;
+using RapAddict.Domain.Queries.Persons;
 using RapAddict.Domain.Repositories.Persons;
+using RapAddict.Domain.Services.Persons;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Persons
@@ -35,6 +39,46 @@ namespace RapAddict.API.Controllers.Persons
             }
 
             return Ok(new { id = resultP.Data });
+        }
+
+
+        [HttpPost("{id}/StreamingPlatform")]
+        public IActionResult AddStreamingPlatform([FromRoute] int id, [FromBody] AddPlatformToPersonDto dto)
+        {
+            ICqsResult result = _contentCreatorService.Execute(new AddStreamingPlatformToContentCreatorCommand(id, dto.PlatformId, dto.PersonPlatformId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return NoContent();
+        }
+
+        [HttpGet()]
+        public IActionResult GetAll([FromQuery] GetPersonsDto dto)
+        {
+            ICqsResult<PagedList<ContentCreator>> result = _contentCreatorService.Execute(new GetContentCreatorsQuery(dto.Pseudo, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get([FromRoute] int id)
+        {
+            ICqsResult<ContentCreatorDetails> result = _contentCreatorService.Execute(new GetContentCreatorQuery(id));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
         }
     }
 }

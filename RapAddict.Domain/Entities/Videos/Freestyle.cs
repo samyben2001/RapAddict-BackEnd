@@ -2,7 +2,7 @@
 {
     public class Freestyle : Video
     {
-        public Freestyle(int id, string title, DateTime? releaseDate, string url, int? durationMs) : base(id, title, releaseDate, url, durationMs)
+        public Freestyle(int id, string title, DateTime? releaseDate, int? durationMs, string url, DateTime addedDate) : base(id, title, releaseDate, durationMs, url, addedDate)
         {
         }
     }

@@ -16,4 +16,9 @@
     <ProjectReference Include="..\RapAddict.Domain\RapAddict.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Users\" />
+    <Folder Include="Models\Dtos\Users\" />
+  </ItemGroup>
+
 </Project>

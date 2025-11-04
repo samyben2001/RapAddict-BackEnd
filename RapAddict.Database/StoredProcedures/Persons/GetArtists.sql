@@ -9,7 +9,7 @@ BEGIN
 		IF @PageNumber <= 0
 			RAISERROR('La page sélectionée ne peut pas être inférieure à 1', 16, 1)
 
-		IF @PageNumber <= 0
+		IF @PageSize <= 0
 			RAISERROR('Le nombre d''éléments par page ne peut pas être inférieur à 1', 16, 1)
 
 		IF @PageSize > 50
@@ -27,8 +27,11 @@ BEGIN
         WHERE 
             (@Pseudo IS NULL OR p.[Pseudo] LIKE '%' + @Pseudo + '%')
 
-		IF @PageNumber > (CEILING( CAST(@c AS FLOAT) / @PageSize ))
-			RAISERROR('Page Incorrecte! Aucun élément!', 16, 1)
+        IF @c = 0   
+			RAISERROR('Aucun élément!', 16, 1)
+
+		IF @PageNumber > CEILING(CAST(@c AS FLOAT) / @PageSize)
+			RAISERROR('Page Incorrecte!', 16, 1)
 
         -- Return Count
         SELECT @c AS TotalCount;

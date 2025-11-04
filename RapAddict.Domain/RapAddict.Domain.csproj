@@ -14,4 +14,10 @@
     <ProjectReference Include="..\Tools.Cqs\Tools.Cqs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Users\" />
+    <Folder Include="Repositories\Users\" />
+    <Folder Include="Services\Users\" />
+  </ItemGroup>
+
 </Project>

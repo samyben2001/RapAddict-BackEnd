@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RapAddict.API.Models.Dtos.Albums;
+using RapAddict.API.Models.Dtos;
 using RapAddict.API.Models.Dtos.Persons;
 using RapAddict.Domain.Commands.Persons;
 using RapAddict.Domain.Entities;
 using RapAddict.Domain.Entities.Albums;
 using RapAddict.Domain.Entities.Persons;
-using RapAddict.Domain.Queries.Albums;
+using RapAddict.Domain.Entities.Videos;
 using RapAddict.Domain.Queries.Persons;
 using RapAddict.Domain.Repositories.Persons;
-using RapAddict.Domain.Services.Albums;
 using Tools.Cqs.Results;
 
 namespace RapAddict.API.Controllers.Persons
@@ -61,10 +60,10 @@ namespace RapAddict.API.Controllers.Persons
             return Ok(new { id = resultPerson.Data });
         }
 
-        [HttpPost("{artistId}/Album")]
-        public IActionResult AddAlbumToArtist([FromRoute] int artistId, [FromBody] AddAlbumToArtistDto dto)
+        [HttpPost("{id}/Album")]
+        public IActionResult AddAlbum([FromRoute] int id, [FromBody] AddAlbumToArtistDto dto)
         {
-            ICqsResult result = _artistService.Execute(new AddAlbumToArtistCommand(artistId, dto.AlbumId));
+            ICqsResult result = _artistService.Execute(new AddAlbumToArtistCommand(id, dto.AlbumId));
 
             if (result.IsFailure)
             {
@@ -74,10 +73,24 @@ namespace RapAddict.API.Controllers.Persons
             return NoContent();
         }
 
-        [HttpPost("{artistId}/Track")]
-        public IActionResult AddTrackoArtist([FromRoute] int artistId, [FromBody] AddTrackToArtistDto dto)
+        [HttpPost("{id}/Track")]
+        public IActionResult AddTrack([FromRoute] int id, [FromBody] AddTrackToArtistDto dto)
         {
-            ICqsResult result = _artistService.Execute(new AddTrackToArtistCommand(artistId, dto.TrackId));
+            ICqsResult result = _artistService.Execute(new AddTrackToArtistCommand(id, dto.TrackId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return NoContent();
+        }
+
+
+        [HttpPost("{id}/StreamingPlatform")]
+        public IActionResult AddStreamingPlatform([FromRoute] int id, [FromBody] AddPlatformToPersonDto dto)
+        {
+            ICqsResult result = _artistService.Execute(new AddStreamingPlatformToArtistCommand(id, dto.PlatformId, dto.PersonPlatformId));
 
             if (result.IsFailure)
             {
@@ -88,7 +101,7 @@ namespace RapAddict.API.Controllers.Persons
         }
 
         [HttpGet()]
-        public IActionResult GetArtists([FromQuery] GetArtistsDto dto)
+        public IActionResult GetAll([FromQuery] GetPersonsDto dto)
         {
             ICqsResult<PagedList<Artist>> result = _artistService.Execute(new GetArtistsQuery(dto.Pseudo, dto.PageNumber, dto.PageSize));
 
@@ -100,10 +113,88 @@ namespace RapAddict.API.Controllers.Persons
             return Ok(result.Data);
         }
 
-        [HttpGet("{artistId}")]
-        public IActionResult GetArtist([FromRoute] int artistId)
+        [HttpGet("{id}")]
+        public IActionResult Get([FromRoute] int id)
         {
-            ICqsResult<ArtistDetails> result = _artistService.Execute(new GetArtistQuery(artistId));
+            ICqsResult<ArtistDetails> result = _artistService.Execute(new GetArtistQuery(id));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}/Albums")]
+        public IActionResult GetAlbums([FromRoute] int id, [FromQuery] PagedListDto dto)
+        {
+            ICqsResult<PagedList<Album>> result = _artistService.Execute(new GetArtistAlbumsQuery(id, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}/Tracks")]
+        public IActionResult GetTracks([FromRoute] int id, [FromQuery] PagedListDto dto)
+        {
+            ICqsResult<PagedList<Track>> result = _artistService.Execute(new GetArtistTracksQuery(id, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}/Interviews")]
+        public IActionResult GetInterviews([FromRoute] int id, [FromQuery] PagedListDto dto)
+        {
+            ICqsResult<PagedList<Interview>> result = _artistService.Execute(new GetArtistInterviewsQuery(id, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}/Freestyles")]
+        public IActionResult GetFreestyles([FromRoute] int id, [FromQuery] PagedListDto dto)
+        {
+            ICqsResult<PagedList<Freestyle>> result = _artistService.Execute(new GetArtistFreestylesQuery(id, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}/Clips")]
+        public IActionResult GetClips([FromRoute] int id, [FromQuery] PagedListDto dto)
+        {
+            ICqsResult<PagedList<Clip>> result = _artistService.Execute(new GetArtistClipsQuery(id, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpGet("{id}/Analyses")]
+        public IActionResult GetAnalyses([FromRoute] int id, [FromQuery] PagedListDto dto)
+        {
+            ICqsResult<PagedList<Analyse>> result = _artistService.Execute(new GetArtistAnalysesQuery(id, dto.PageNumber, dto.PageSize));
 
             if (result.IsFailure)
             {

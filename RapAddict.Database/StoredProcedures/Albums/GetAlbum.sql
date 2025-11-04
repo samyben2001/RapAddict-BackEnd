@@ -26,7 +26,7 @@ AS
     WHERE aa.AlbumId = @Id
 
 	-- Get Album StreamingPlatforms
-	SELECT sp.[Name], asp.AlbumStreamingPlatformId as 'AlbumPlatformId' FROM [StreamingPlatform] as sp
+	SELECT sp.[Name], asp.AlbumStreamingPlatformId as 'IdFromPlatform' FROM [StreamingPlatform] as sp
 	JOIN [AlbumStreamingPlatforms] as asp ON asp.StreamingPlatformId = sp.Id 
 	WHERE asp.AlbumId = @Id
 RETURN 0

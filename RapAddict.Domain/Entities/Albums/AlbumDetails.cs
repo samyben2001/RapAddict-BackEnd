@@ -1,5 +1,4 @@
-﻿
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace RapAddict.Domain.Entities.Albums
 {
@@ -9,7 +8,7 @@ namespace RapAddict.Domain.Entities.Albums
         public List<Track> Tracks { get; set; } = [];
 
         [JsonPropertyOrder(100)]
-        public List<AlbumStreamingPlatform> AlbumStreamingPlatforms { get; set; } = [];
+        public List<EntityPlatform> AlbumStreamingPlatforms { get; set; } = [];
 
         public AlbumDetails(int id, string title, DateTime? releaseDate, int? durationMs, string? coverUrl) : base(id, title, releaseDate, durationMs, coverUrl)
         {

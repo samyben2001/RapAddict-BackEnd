@@ -99,7 +99,7 @@ namespace RapAddict.Domain.Services.Albums
 
                     album.Tracks = multi.Read<Track>().ToList();
                     album.Artists = multi.Read<Artist>().ToList();
-                    album.AlbumStreamingPlatforms = multi.Read<AlbumStreamingPlatform>().ToList();
+                    album.AlbumStreamingPlatforms = multi.Read<EntityPlatform>().ToList();
 
                     return CqsResult<AlbumDetails>.Success(album);
                 }

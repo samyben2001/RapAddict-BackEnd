@@ -32,9 +32,9 @@ namespace RapAddict.API.Controllers.Persons
         }
 
         [HttpPost("{personId}/SocialMedia")]
-        public IActionResult AddSocialMediaToPerson([FromRoute] int personId, [FromBody] AddSocialMediaToPersonDto dto)
+        public IActionResult AddSocialMedia([FromRoute] int personId, [FromBody] AddPlatformToPersonDto dto)
         {
-            ICqsResult result = _personService.Execute(new AddSocialMediaToPersonCommand(personId, dto.SocialMediaId, dto.PlatformId));
+            ICqsResult result = _personService.Execute(new AddSocialMediaToPersonCommand(personId, dto.PlatformId, dto.PersonPlatformId));
 
             if (result.IsFailure)
             {

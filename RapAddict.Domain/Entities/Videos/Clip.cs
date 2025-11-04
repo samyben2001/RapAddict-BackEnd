@@ -1,13 +1,22 @@
-﻿namespace RapAddict.Domain.Entities.Videos
+﻿using RapAddict.Domain.Entities.Persons;
+using System.Text.Json.Serialization;
+
+namespace RapAddict.Domain.Entities.Videos
 {
     public class Clip: Video
     {
-        public int ArtistId { get; }
+        [JsonPropertyOrder(90)]
+        public Artist Artist { get; }
 
 
-        public Clip(int id, int artistId, string title, DateTime? releaseDate, string url, int? durationMs) : base(id, title, releaseDate, url, durationMs)
+        public Clip(int id, Artist artist, string title, DateTime? releaseDate, int? durationMs, string url, DateTime addedDate) : base(id, title, releaseDate, durationMs, url, addedDate)
         {
-            ArtistId = artistId;
+            Artist = artist;
+        }
+
+        public Clip(int id, string title, DateTime? releaseDate, int? durationMs, string url, DateTime addedDate, int aId, string aPseudo, DateTime aAddedDate, string aImageUrl) : base(id, title, releaseDate, durationMs, url, addedDate)
+        {
+            Artist = new Artist(aId, aPseudo, aAddedDate, aImageUrl);
         }
     }
 }

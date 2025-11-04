@@ -98,4 +98,46 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ArtistStreamingPlatformId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a6cee15a-d0cc-4649-9766-c0653efd6c8f" ChangeDateTime="11/04/2025 11:14:09">
+    <Property Name="ElementName" Value="[dbo].[ContentCreatorStreamingPlatforms].[ArtistStreamingPlatformId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ContentCreatorStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ContentCreatorStreamingPlatformId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f8e234c8-e04c-4e1c-aaeb-d5cdeb6d0a36" ChangeDateTime="11/04/2025 11:14:26">
+    <Property Name="ElementName" Value="[dbo].[ContentCreatorStreamingPlatforms].[ArtistId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ContentCreatorStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ContentCreatorId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="42631633-1ed6-41b5-a28b-0f923899f4b9" ChangeDateTime="11/04/2025 11:15:45">
+    <Property Name="ElementName" Value="[dbo].[ContentCreatorStreamingPlatforms].[ContentCreatorStreamingPlatformId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ContentCreatorStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ContentCreatorStreamingPlatformI" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b18585d5-9204-4561-b57c-80364ca36401" ChangeDateTime="11/04/2025 11:15:52">
+    <Property Name="ElementName" Value="[dbo].[ContentCreatorStreamingPlatforms].[ContentCreatorStreamingPlatformI]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ContentCreatorStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ContentCreatorStreamingPlatformId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="391f94e9-4427-4893-af43-c2ff8b96a074" ChangeDateTime="11/04/2025 11:16:47">
+    <Property Name="ElementName" Value="[dbo].[JournalistStreamingPlatforms].[ContentCreatorId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[JournalistStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JournalistId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fdf3e737-4fe4-4151-b79c-0e5daa0913e1" ChangeDateTime="11/04/2025 11:16:58">
+    <Property Name="ElementName" Value="[dbo].[JournalistStreamingPlatforms].[ContentCreatorStreamingPlatformId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[JournalistStreamingPlatforms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JournalistStreamingPlatformId" />
+  </Operation>
 </Operations>

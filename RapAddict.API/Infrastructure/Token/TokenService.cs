@@ -20,7 +20,6 @@ namespace RapAddict.API.Infrastructure.Token
             // 'Payload' est constitué de 'Claims'
             List<Claim> claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Sid, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email)
             };

@@ -70,6 +70,7 @@
     <Folder Include="StoredProcedures\Videos" />
     <Folder Include="StoredProcedures\Users" />
     <Folder Include="Scripts" />
+    <Folder Include="StoredProcedures\Auth" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RapAddict.Database.publish.xml" />
@@ -102,7 +103,6 @@
     <Build Include="Tables\Albums\StreamingPlatform.sql" />
     <Build Include="StoredProcedures\Albums\CreateAlbum.sql" />
     <Build Include="StoredProcedures\Albums\CreateTrack.sql" />
-    <Build Include="StoredProcedures\Users\CreateUser.sql" />
     <Build Include="StoredProcedures\Videos\CreateAnalyse.sql" />
     <Build Include="StoredProcedures\Videos\CreateClip.sql" />
     <Build Include="StoredProcedures\Videos\CreateFreestyle.sql" />
@@ -138,6 +138,24 @@
     <Build Include="StoredProcedures\Persons\GetArtistFreestyles.sql" />
     <Build Include="StoredProcedures\Persons\GetArtistAnalyses.sql" />
     <Build Include="StoredProcedures\Persons\GetArtistTracks.sql" />
+    <Build Include="StoredProcedures\Videos\GetAnalyses.sql" />
+    <Build Include="StoredProcedures\Videos\GetClips.sql" />
+    <Build Include="StoredProcedures\Videos\GetInterviews.sql" />
+    <Build Include="StoredProcedures\Videos\GetAnalyse.sql" />
+    <Build Include="StoredProcedures\Videos\GetInterview.sql" />
+    <Build Include="StoredProcedures\Videos\GetClip.sql" />
+    <Build Include="StoredProcedures\Videos\GetFreestyle.sql" />
+    <Build Include="StoredProcedures\Videos\GetFreestyles.sql" />
+    <Build Include="StoredProcedures\Persons\GetContentCreators.sql" />
+    <Build Include="StoredProcedures\Persons\GetJournalists.sql" />
+    <Build Include="StoredProcedures\Persons\GetContentCreator.sql" />
+    <Build Include="StoredProcedures\Persons\GetJournalist.sql" />
+    <Build Include="Tables\Persons\ContentCreatorStreamingPlatforms.sql" />
+    <Build Include="Tables\Persons\JournalistStreamingPlatforms.sql" />
+    <Build Include="StoredProcedures\Persons\AddStreamingPlatformToJournalist.sql" />
+    <Build Include="StoredProcedures\Persons\AddStreamingPlatformToContentCreator.sql" />
+    <Build Include="StoredProcedures\Auth\Register.sql" />
+    <Build Include="StoredProcedures\Auth\Login.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RapAddict.Database.refactorlog" />

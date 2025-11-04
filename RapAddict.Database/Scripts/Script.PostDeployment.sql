@@ -65,8 +65,27 @@ BEGIN
 
 
     INSERT INTO [Person] (Pseudo, FirstName, LastName, ImageUrl) VALUES ('Medhi Maïzi', 'Medhi', 'Maïzi', null);
-    INSERT INTO [Journalist] ([Id]) VALUES (3);
+    INSERT INTO [Journalist] ([Id]) VALUES (4);
     INSERT INTO [Person] (Pseudo, FirstName, LastName, ImageUrl) VALUES ('Le Rap en Mieux', 'Yannis', null, null);
-    INSERT INTO [ContentCreator] ([Id]) VALUES (4);
+    INSERT INTO [ContentCreator] ([Id]) VALUES (5);
+
+
+
+
+    INSERT INTO [Video]([Title],[Url]) VALUES ('Analyse 1', 'http://analyse1')
+    INSERT INTO [Analyse]([Id],[ContentCreatorId]) VALUES (1, 5)
+    INSERT INTO [Video]([Title],[Url]) VALUES ('Analyse 2', 'http://analyse2')
+    INSERT INTO [Analyse]([Id],[ContentCreatorId]) VALUES (2, 5)
+
+
+    INSERT INTO [Video]([Title],[Url]) VALUES ('Interview 1', 'http://Interview1')
+    INSERT INTO [Interview]([Id],[JournalistId]) VALUES (3, 4)
+    INSERT INTO [Video]([Title],[Url]) VALUES ('Interview 2', 'http://Interview2')
+    INSERT INTO [Interview]([Id],[JournalistId]) VALUES (4, 4)
+
+    INSERT INTO [Video]([Title],[Url]) VALUES ('Clip 1', 'http://clip1')
+    INSERT INTO [Clip]([Id],[ArtistId]) VALUES (5, 1)
+    INSERT INTO [Video]([Title],[Url]) VALUES ('Clip 2', 'http://clip2')
+    INSERT INTO [Clip]([Id],[ArtistId]) VALUES (6, 2)
 END
 

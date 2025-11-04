@@ -8,7 +8,7 @@ AS
 		IF @PageNumber <= 0
 			RAISERROR('La page sélectionée ne peut pas être inférieure à 1', 16, 1)
 
-		IF @PageNumber <= 0
+		IF @PageSize <= 0
 			RAISERROR('Le nombre d''éléments par page ne peut pas être inférieur à 1', 16, 1)
 
 		IF @PageSize > 50
@@ -21,8 +21,11 @@ AS
 		JOIN [ArtistAlbums] as aa ON aa.AlbumId = a.Id
 		WHERE aa.ArtistId = @Id
 
-		IF @PageNumber > (CEILING( CAST(@c AS FLOAT) / @PageSize ))
-			RAISERROR('Page Incorrecte! Aucun élément!', 16, 1)
+        IF @c = 0   
+			RAISERROR('Aucun élément!', 16, 1)
+
+		IF @PageNumber > CEILING(CAST(@c AS FLOAT) / @PageSize)
+			RAISERROR('Page Incorrecte!', 16, 1)
 
         -- Return Count
         SELECT @c AS TotalCount;
@@ -34,7 +37,7 @@ AS
 		JOIN [ArtistAlbums] as aa ON aa.AlbumId = a.Id
 		WHERE aa.ArtistId = @Id
 		ORDER BY 
-			a.[Title] DESC
+			a.[Title] ASC
 		OFFSET @Offset ROWS
 		FETCH NEXT @PageSize ROWS ONLY;
 

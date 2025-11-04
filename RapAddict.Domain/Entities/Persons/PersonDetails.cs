@@ -11,6 +11,10 @@ namespace RapAddict.Domain.Entities.Persons
         public string? LastName { get; }
 
 
+        [JsonPropertyOrder(11)]
+        public List<EntityPlatform> SocialMedias { get; set; } = [];
+
+
         public PersonDetails(int id, string pseudo, DateTime addedDate, string? imageUrl) : base(id, pseudo, addedDate, imageUrl) 
         {
         }

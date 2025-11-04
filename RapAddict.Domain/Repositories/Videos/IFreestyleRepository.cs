@@ -1,11 +1,17 @@
 ﻿using RapAddict.Domain.Commands.Videos;
+using RapAddict.Domain.Entities;
+using RapAddict.Domain.Entities.Videos;
+using RapAddict.Domain.Queries.Videos;
 using Tools.Cqs.Commands;
+using Tools.Cqs.Queries;
 
 namespace RapAddict.Domain.Repositories.Videos
 {
     public interface IFreestyleRepository : 
         ICommandHandler<CreateFreestyleCommand>,
-        ICommandHandler<AddArtistToFreestyleCommand>
+        ICommandHandler<AddArtistToFreestyleCommand>,
+        IQueryHandler<GetFreestylesQuery, PagedList<Freestyle>>,
+        IQueryHandler<GetFreestyleQuery, FreestyleDetails>
     {
     }
 }

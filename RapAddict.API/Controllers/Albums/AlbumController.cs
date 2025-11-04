@@ -23,7 +23,7 @@ namespace RapAddict.API.Controllers.Albums
         [HttpPost]
         public IActionResult Create(CreateAlbumDto dto)
         {
-            ICqsResult<int> result = _albumService.Execute(new CreateAlbumCommand(dto.Title,dto.ReleaseDate,dto.DurationMs, dto.CoverUrl));
+            ICqsResult<int> result = _albumService.Execute(new CreateAlbumCommand(dto.Title, dto.ReleaseDate, dto.DurationMs, dto.CoverUrl));
 
             if (result.IsFailure)
             {
@@ -60,7 +60,7 @@ namespace RapAddict.API.Controllers.Albums
         }
 
         [HttpGet()]
-        public IActionResult GetAlbums([FromQuery] GetAlbumsDto dto)
+        public IActionResult GetAll([FromQuery] GetAlbumsDto dto)
         {
             ICqsResult<PagedList<Album>> result = _albumService.Execute(new GetAlbumsQuery(dto.Title, dto.Year, dto.Month, dto.Day, dto.PageNumber, dto.PageSize));
 
@@ -73,7 +73,7 @@ namespace RapAddict.API.Controllers.Albums
         }
 
         [HttpGet("{albumId}")]
-        public IActionResult GetAlbum([FromRoute] int albumId)
+        public IActionResult Get([FromRoute] int albumId)
         {
             ICqsResult<AlbumDetails> result = _albumService.Execute(new GetAlbumQuery(albumId));
 
@@ -86,3 +86,5 @@ namespace RapAddict.API.Controllers.Albums
         }
     }
 }
+
+

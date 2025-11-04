@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RapAddict.API.Models.Dtos.Videos;
 using RapAddict.Domain.Commands.Videos;
+using RapAddict.Domain.Entities;
+using RapAddict.Domain.Entities.Videos;
+using RapAddict.Domain.Queries.Videos;
 using RapAddict.Domain.Repositories.Videos;
 using RapAddict.Domain.Services.Videos;
 using Tools.Cqs.Results;
@@ -49,6 +52,33 @@ namespace RapAddict.API.Controllers.Videos
             }
 
             return NoContent();
+        }
+
+        [HttpGet()]
+        public IActionResult GetAll([FromQuery] GetVideosDto dto)
+        {
+            ICqsResult<PagedList<Freestyle>> result = _freestyleService.Execute(new GetFreestylesQuery(dto.Title, dto.Year, dto.Month, dto.Day, dto.PageNumber, dto.PageSize));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
+        }
+
+
+        [HttpGet("{id}")]
+        public IActionResult Get([FromRoute] int id)
+        {
+            ICqsResult<FreestyleDetails> result = _freestyleService.Execute(new GetFreestyleQuery(id));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Data);
         }
     }
 }

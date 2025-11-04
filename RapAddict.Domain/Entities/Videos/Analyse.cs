@@ -1,13 +1,28 @@
-﻿namespace RapAddict.Domain.Entities.Videos
+﻿using RapAddict.Domain.Entities.Persons;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace RapAddict.Domain.Entities.Videos
 {
     public class Analyse: Video
     {
-        public int ContentCreatorId { get; }
+        [JsonPropertyOrder(90)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public ContentCreator? ContentCreator { get; }
 
-
-        public Analyse(int id, int contentCreatorId, string title, DateTime? releaseDate, string url, int? durationMs) : base(id, title, releaseDate, url, durationMs)
+        public Analyse(int id, string title, DateTime? releaseDate, int? durationMs, string url, DateTime addedDate) : base(id, title, releaseDate, durationMs, url, addedDate)
         {
-            ContentCreatorId = contentCreatorId;
+        }
+
+
+        public Analyse(int id, ContentCreator contentCreator, string title, DateTime? releaseDate, int? durationMs, string url, DateTime addedDate) : base(id, title, releaseDate, durationMs, url, addedDate)
+        {
+            ContentCreator = contentCreator;
+        }
+
+        public Analyse(int id, string title, DateTime? releaseDate, int? durationMs, string url, DateTime addedDate, int ccId, string ccPseudo, DateTime ccAddedDate, string ccImageUrl) : base(id, title, releaseDate, durationMs, url, addedDate)
+        {
+            ContentCreator = new ContentCreator(ccId, ccPseudo, ccAddedDate, ccImageUrl);
         }
     }
 }
