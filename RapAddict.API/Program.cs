@@ -23,7 +23,7 @@ namespace RapAddict.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add Cors
-            string corsPolicyName = "TechnoCors";
+            string corsPolicyName = "RapAddictCors";
 
             builder.Services.AddCors(options =>
             {
@@ -37,8 +37,8 @@ namespace RapAddict.API
             });
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

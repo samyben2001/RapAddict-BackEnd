@@ -6,9 +6,7 @@ BEGIN
 	SELECT	[Id],
 			[Username],
 			[Email],
-			[InscriptionDate],
-			[FirstName],
-			[LastName]
+			[InscriptionDate]
 		FROM [User]
 		WHERE	([Email] = @login OR [Username] = @login)
 			AND	[Password] = dbo.HashAndSalt(@Password)
